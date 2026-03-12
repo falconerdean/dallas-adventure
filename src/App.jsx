@@ -11,7 +11,7 @@ const stops = [
       "Step outside the tall glass tower where we slept — your chariot idles at the curb",
     ],
     answer: "Uber from Hyatt Regency Frisco → Downtown Dallas",
-    description: "The day starts! We're grabbing an Uber at 9 AM and heading 40 minutes south to the West End in downtown Dallas. Sit back, grab a coffee, and watch the skyline grow closer.",
+    description: "The day starts! We're grabbing an Uber at 9 AM and heading 40 minutes south to the West End in downtown Dallas.",
     vibe: "🌅 Fresh Start • Let's Roll",
     gradient: "linear-gradient(135deg, #2d1b69 0%, #4a2d8a 50%, #6b3fa0 100%)",
     accent: "#c4b5fd",
