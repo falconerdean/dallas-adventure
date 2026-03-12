@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a1a"/>
+      <stop offset="50%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Decorative stars -->
+  <circle cx="150" cy="100" r="2" fill="#fff" opacity="0.5"/>
+  <circle cx="350" cy="80" r="1.5" fill="#fff" opacity="0.3"/>
+  <circle cx="900" cy="120" r="2" fill="#fff" opacity="0.4"/>
+  <circle cx="1050" cy="200" r="1.5" fill="#fff" opacity="0.6"/>
+  <circle cx="200" cy="500" r="2" fill="#fff" opacity="0.3"/>
+  <circle cx="1000" cy="450" r="1.5" fill="#fff" opacity="0.5"/>
+  <circle cx="600" cy="60" r="1.5" fill="#ffd166" opacity="0.4"/>
+  <circle cx="80" cy="300" r="2" fill="#ffd166" opacity="0.3"/>
+  <circle cx="1120" cy="380" r="1.5" fill="#ffd166" opacity="0.3"/>
+  <!-- Decorative border -->
+  <rect x="40" y="40" width="1120" height="550" rx="20" fill="none" stroke="#ffd166" stroke-width="1" opacity="0.15"/>
+  <!-- Title -->
+  <text x="600" y="220" text-anchor="middle" font-size="58" fill="#ffd166" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Stefanie &amp; Dean's</text>
+  <text x="600" y="300" text-anchor="middle" font-size="36" fill="#ccd6f6" font-family="Georgia, 'Times New Roman', serif" letter-spacing="8">MYSTERY DAY TRIP</text>
+  <!-- Divider -->
+  <line x1="440" y1="340" x2="760" y2="340" stroke="#ffd166" stroke-width="1" opacity="0.4"/>
+  <!-- Tagline -->
+  <text x="600" y="400" text-anchor="middle" font-size="24" fill="#f4a261" font-family="Georgia, 'Times New Roman', serif" font-style="italic">Pack your bags for a whimsical</text>
+  <text x="600" y="438" text-anchor="middle" font-size="24" fill="#f4a261" font-family="Georgia, 'Times New Roman', serif" font-style="italic">pre-flight day in Dallas</text>
+  <!-- Date -->
+  <text x="600" y="510" text-anchor="middle" font-size="18" fill="#8892b0" font-family="Georgia, 'Times New Roman', serif" letter-spacing="4">Friday, March 13, 2026</text>
+  <!-- Small decorative diamonds -->
+  <text x="490" y="513" text-anchor="middle" font-size="12" fill="#ffd166" opacity="0.6">&#x2726;</text>
+  <text x="710" y="513" text-anchor="middle" font-size="12" fill="#ffd166" opacity="0.6">&#x2726;</text>
+</svg>
