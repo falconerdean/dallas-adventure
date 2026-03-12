@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 
 const stops = [
   {
@@ -172,6 +172,38 @@ const stops = [
     bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(167,139,250,0.03) 35px, rgba(167,139,250,0.03) 70px)",
   },
 ];
+
+// — Time-gate utilities —
+const CDT_OFFSET = 5; // CDT = UTC−5 (DST active March 13, 2026)
+
+function stopTimeToDate(timeStr) {
+  const [time, period] = timeStr.split(" ");
+  const [hours, minutes] = time.split(":").map(Number);
+  let h = hours;
+  if (period === "PM" && h !== 12) h += 12;
+  if (period === "AM" && h === 12) h = 0;
+  return new Date(Date.UTC(2026, 2, 13, h + CDT_OFFSET, minutes, 0));
+}
+
+const ADVENTURE_START = stopTimeToDate("9:00 AM");
+const GATE_OPEN = new Date(ADVENTURE_START.getTime() - 60 * 60 * 1000);
+
+function formatCountdown(ms) {
+  if (ms <= 0) return null;
+  const s = Math.floor(ms / 1000);
+  const d = Math.floor(s / 86400);
+  const h = Math.floor((s % 86400) / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  const pad = (n) => String(n).padStart(2, "0");
+  if (d > 0) return `${d}d ${pad(h)}h ${pad(m)}m ${pad(sec)}s`;
+  if (h > 0) return `${pad(h)}:${pad(m)}:${pad(sec)}`;
+  return `${pad(m)}:${pad(sec)}`;
+}
+
+function useAdmin() {
+  return new URLSearchParams(window.location.search).get("admin") === "true";
+}
 
 function ConfettiPiece({ delay, color }) {
   const style = {
@@ -459,12 +491,41 @@ function StopCard({ stop, index }) {
 export default function App() {
   const [started, setStarted] = useState(false);
   const [titleVisible, setTitleVisible] = useState(false);
+  const [now, setNow] = useState(() => new Date());
+  const admin = useAdmin();
+
+  // Tick every second on start page (countdown), every 60s on timeline (stop reveals)
+  useEffect(() => {
+    const interval = setInterval(() => setNow(new Date()), started ? 60000 : 1000);
+    return () => clearInterval(interval);
+  }, [started]);
 
   useEffect(() => {
     if (started) {
       setTimeout(() => setTitleVisible(true), 300);
     }
   }, [started]);
+
+  // Memoize star positions so they don't flicker on re-render
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 20 }).map(() => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        opacity: 0.3 + Math.random() * 0.5,
+        delay: Math.random() * 3,
+      })),
+    [],
+  );
+
+  const gateOpen = admin || now >= GATE_OPEN;
+  const msUntilAdventure = ADVENTURE_START.getTime() - now.getTime();
+  const visibleStops = admin
+    ? stops
+    : stops.filter((stop) => {
+        const stopDate = stopTimeToDate(stop.time);
+        return now >= new Date(stopDate.getTime() - 60 * 60 * 1000);
+      });
 
   if (!started) {
     return (
@@ -479,14 +540,14 @@ export default function App() {
           fontFamily: "'Georgia', 'Times New Roman', serif",
           padding: "40px 20px",
           textAlign: "center",
-          cursor: "pointer",
+          cursor: gateOpen ? "pointer" : "default",
           overflow: "hidden",
           position: "relative",
         }}
-        onClick={() => setStarted(true)}
+        onClick={() => gateOpen && setStarted(true)}
       >
         {/* Background stars */}
-        {Array.from({ length: 20 }).map((_, i) => (
+        {stars.map((star, i) => (
           <div
             key={i}
             style={{
@@ -495,10 +556,10 @@ export default function App() {
               height: "2px",
               backgroundColor: "#fff",
               borderRadius: "50%",
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              opacity: 0.3 + Math.random() * 0.5,
-              animation: `sparkle 3s ease-in-out ${Math.random() * 3}s infinite`,
+              left: star.left,
+              top: star.top,
+              opacity: star.opacity,
+              animation: `sparkle 3s ease-in-out ${star.delay}s infinite`,
             }}
           />
         ))}
@@ -529,26 +590,120 @@ export default function App() {
         >
           Mystery Day Trip
         </h2>
-        <p style={{ color: "#8892b0", fontSize: "16px", margin: "0 0 40px 0" }}>
+        <p style={{ color: "#f4a261", fontSize: "16px", margin: "0 0 4px 0", fontStyle: "italic" }}>
+          Pack your bags for a whimsical pre-flight day in Dallas
+        </p>
+        <p style={{ color: "#8892b0", fontSize: "15px", margin: "0 0 32px 0" }}>
           Friday, March 13, 2026
         </p>
+
+        {/* Master riddle */}
         <div
           style={{
-            display: "inline-block",
-            padding: "14px 36px",
-            borderRadius: "30px",
-            border: "2px solid #ffd166",
-            color: "#ffd166",
-            fontSize: "14px",
-            fontWeight: 600,
-            letterSpacing: "3px",
-            textTransform: "uppercase",
-            animation: "pulse 2s ease-in-out infinite",
-            transition: "all 0.3s",
+            maxWidth: "380px",
+            margin: "0 auto 32px",
+            padding: "24px",
+            borderRadius: "16px",
+            backgroundColor: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,209,102,0.15)",
           }}
         >
-          Tap to Begin ✦
+          <p
+            style={{
+              color: "#8892b0",
+              fontSize: "14px",
+              lineHeight: 1.9,
+              fontStyle: "italic",
+              margin: 0,
+            }}
+          >
+            A day in ten acts beneath the Lone Star:
+            <br />
+            Leave your burdens with strangers — you'll travel far.
+            <br />
+            Walk where a nation's heart cracked in the street,
+            <br />
+            then peer through the window where two timelines meet.
+            <br />
+            Feast where gods stirred chocolate into fire,
+            <br />
+            drift through a garden that hovers on air,
+            <br />
+            wade through a sea of petals dressed for a ball,
+            <br />
+            then flash something golden to enter the hall.
+            <br />
+            When the sun paints the sky, a silver bird calls —
+            <br />
+            ten secrets, ten riddles, ten curtains that fall.
+          </p>
         </div>
+
+        {/* Countdown */}
+        {msUntilAdventure > 0 && (
+          <div style={{ margin: "0 0 28px 0" }}>
+            <p
+              style={{
+                color: "#4a5568",
+                fontSize: "11px",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                margin: "0 0 8px 0",
+              }}
+            >
+              Adventure begins in
+            </p>
+            <p
+              style={{
+                color: "#ffd166",
+                fontSize: "clamp(28px, 6vw, 40px)",
+                fontFamily: "'Courier New', monospace",
+                fontWeight: 700,
+                margin: 0,
+                letterSpacing: "2px",
+              }}
+            >
+              {formatCountdown(msUntilAdventure)}
+            </p>
+          </div>
+        )}
+
+        {gateOpen ? (
+          <div
+            style={{
+              display: "inline-block",
+              padding: "14px 36px",
+              borderRadius: "30px",
+              border: "2px solid #ffd166",
+              color: "#ffd166",
+              fontSize: "14px",
+              fontWeight: 600,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              animation: "pulse 2s ease-in-out infinite",
+              transition: "all 0.3s",
+            }}
+          >
+            Tap to Begin ✦
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "inline-block",
+              padding: "14px 36px",
+              borderRadius: "30px",
+              border: "2px solid #4a5568",
+              color: "#4a5568",
+              fontSize: "14px",
+              fontWeight: 600,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+            }}
+          >
+            🔒 Not Yet...
+          </div>
+        )}
+
         <p style={{ color: "#4a5568", fontSize: "13px", marginTop: "32px", maxWidth: "280px", lineHeight: 1.6 }}>
           Each stop is a riddle. Tap to unlock hints. Tap again to reveal where we're going.
         </p>
@@ -636,33 +791,6 @@ export default function App() {
         </p>
       </div>
 
-      {/* Bag info */}
-      <div
-        style={{
-          maxWidth: "560px",
-          margin: "0 auto 24px",
-          padding: "0 20px",
-          animation: "fadeSlideIn 0.8s ease-out 0.3s both",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            padding: "14px 18px",
-            borderRadius: "14px",
-            backgroundColor: "rgba(255,209,102,0.08)",
-            border: "1px solid rgba(255,209,102,0.15)",
-          }}
-        >
-          <span style={{ fontSize: "22px" }}>🧳</span>
-          <p style={{ color: "#ccd6f6", fontSize: "13px", lineHeight: 1.5, margin: 0 }}>
-            <strong style={{ color: "#ffd166" }}>Bags handled!</strong> We'll drop our luggage at Bounce storage near Dealey Plaza and pick it up on the way to the airport. Travel light all day.
-          </p>
-        </div>
-      </div>
-
       {/* Timeline */}
       <div
         style={{
@@ -687,7 +815,7 @@ export default function App() {
         />
 
         <div style={{ display: "flex", flexDirection: "column", gap: "24px", position: "relative" }}>
-          {stops.map((stop, i) => (
+          {visibleStops.map((stop, i) => (
             <div key={i} style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
               {/* Timeline dot */}
               <div
@@ -709,6 +837,19 @@ export default function App() {
               </div>
             </div>
           ))}
+          {!admin && visibleStops.length < stops.length && (
+            <div
+              style={{
+                textAlign: "center",
+                padding: "32px 16px",
+                animation: "pulse 3s ease-in-out infinite",
+              }}
+            >
+              <p style={{ color: "#4a5568", fontSize: "14px", fontStyle: "italic" }}>
+                ✨ More stops will appear as the day unfolds...
+              </p>
+            </div>
+          )}
         </div>
       </div>
 
