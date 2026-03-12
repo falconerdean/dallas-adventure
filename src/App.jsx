@@ -240,7 +240,7 @@ function Sparkle({ x, y, delay }) {
   );
 }
 
-function StopCard({ stop, index }) {
+function StopCard({ stop, index, extraRevealContent }) {
   const [phase, setPhase] = useState("sealed"); // sealed, hints, revealed
   const [currentHint, setCurrentHint] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
@@ -472,6 +472,7 @@ function StopCard({ stop, index }) {
             >
               {stop.vibe}
             </span>
+            {extraRevealContent}
           </div>
         )}
 
@@ -520,6 +521,8 @@ export default function App() {
 
   const gateOpen = admin || now >= GATE_OPEN;
   const msUntilAdventure = ADVENTURE_START.getTime() - now.getTime();
+  const nextClueUnlock = new Date(stopTimeToDate(stops[1].time).getTime() - 60 * 60 * 1000);
+  const msUntilNextClue = nextClueUnlock.getTime() - now.getTime();
   const visibleStops = admin
     ? stops
     : stops.filter((stop) => {
@@ -637,6 +640,58 @@ export default function App() {
             <br />
             ten secrets, ten riddles, ten curtains that fall.
           </p>
+        </div>
+
+        {/* Free start — first clue */}
+        <div
+          style={{
+            maxWidth: "380px",
+            width: "100%",
+            margin: "0 auto 32px",
+            textAlign: "left",
+            fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+          }}
+        >
+          <p
+            style={{
+              color: "#ffd166",
+              fontSize: "11px",
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              textAlign: "center",
+              margin: "0 0 12px 0",
+            }}
+          >
+            ✦ Your first clue — free! ✦
+          </p>
+          <StopCard
+            stop={stops[0]}
+            index={0}
+            extraRevealContent={
+              <div
+                style={{
+                  marginTop: "16px",
+                  padding: "12px 16px",
+                  borderRadius: "12px",
+                  backgroundColor: "rgba(255,255,255,0.1)",
+                  textAlign: "center",
+                }}
+              >
+                <p
+                  style={{
+                    color: "#ffd166",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    margin: 0,
+                  }}
+                >
+                  {msUntilNextClue > 0
+                    ? `The next clue to your day is ${formatCountdown(msUntilNextClue)} away!`
+                    : "Your next clue is waiting — tap to begin!"}
+                </p>
+              </div>
+            }
+          />
         </div>
 
         {/* Countdown */}
