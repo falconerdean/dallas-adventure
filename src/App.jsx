@@ -520,6 +520,7 @@ export default function App() {
   );
 
   const gateOpen = admin || now >= GATE_OPEN;
+  const msUntilAdventure = ADVENTURE_START.getTime() - now.getTime();
   const visibleStops = admin
     ? stops
     : stops.filter((stop) => {
@@ -688,6 +689,35 @@ export default function App() {
             }
           />
         </div>
+
+        {/* Countdown */}
+        {msUntilAdventure > 0 && (
+          <div style={{ margin: "0 0 28px 0" }}>
+            <p
+              style={{
+                color: "#4a5568",
+                fontSize: "11px",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                margin: "0 0 8px 0",
+              }}
+            >
+              Adventure begins in
+            </p>
+            <p
+              style={{
+                color: "#ffd166",
+                fontSize: "clamp(28px, 6vw, 40px)",
+                fontFamily: "'Courier New', monospace",
+                fontWeight: 700,
+                margin: 0,
+                letterSpacing: "2px",
+              }}
+            >
+              {formatCountdown(msUntilAdventure)}
+            </p>
+          </div>
+        )}
 
         {gateOpen ? (
           <div
