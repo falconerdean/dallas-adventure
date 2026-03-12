@@ -54,19 +54,19 @@ const stops = [
   },
   {
     time: "Evening",
-    emoji: "✈️",
-    riddle: "When the day is done and memories are made, we'll find our chariot at a gate displayed. Terminal Echo, a number that's prime — headed northwest to rain and evergreen pine.",
+    emoji: "🍸",
+    riddle: "A card of gold unlocks a hidden door — where weary travelers rest and spirits pour. Brand new walls that no one's seen, a sanctuary wrapped in black and green.",
     hints: [
-      "Gate E11, but where are we going?",
-      "The Space Needle will welcome us home",
-      "Flight AS 317 departs at 7:05 PM",
+      "A Roman soldier guards the entrance",
+      "It just opened — we'll be among the first",
+      "Terminal D, before we fly",
     ],
-    answer: "Flying Home to Seattle! 🌲",
-    description: "We wrap up our Texas adventure and head back to the Pacific Northwest. But first — one last Texas sunset from 35,000 feet.",
-    vibe: "🌅 Sunset • Homeward • Memories",
+    answer: "The Centurion Lounge at DFW",
+    description: "Time to unwind in the brand new AMEX Centurion Lounge. Craft cocktails, chef-curated bites, and a moment to relax after a full day of adventure — before we head home.",
+    vibe: "🛋️ Relax • Cocktails • Recharge",
     gradient: "linear-gradient(135deg, #1b2838 0%, #2c3e6b 50%, #4a69a8 100%)",
     accent: "#ffd166",
-    icon: "🛫",
+    icon: "🥂",
     bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,209,102,0.03) 35px, rgba(255,209,102,0.03) 70px)",
   },
 ];
@@ -532,6 +532,33 @@ export default function App() {
         <p style={{ color: "#8892b0", fontSize: "14px", margin: 0 }}>
           Tap each card to unravel the riddle
         </p>
+      </div>
+
+      {/* Bag info */}
+      <div
+        style={{
+          maxWidth: "560px",
+          margin: "0 auto 24px",
+          padding: "0 20px",
+          animation: "fadeSlideIn 0.8s ease-out 0.3s both",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            padding: "14px 18px",
+            borderRadius: "14px",
+            backgroundColor: "rgba(255,209,102,0.08)",
+            border: "1px solid rgba(255,209,102,0.15)",
+          }}
+        >
+          <span style={{ fontSize: "22px" }}>🧳</span>
+          <p style={{ color: "#ccd6f6", fontSize: "13px", lineHeight: 1.5, margin: 0 }}>
+            <strong style={{ color: "#ffd166" }}>Bags handled!</strong> We'll drop our luggage at the airport before heading out and pick it up on the way back. Travel light, explore free.
+          </p>
+        </div>
       </div>
 
       {/* Timeline */}
