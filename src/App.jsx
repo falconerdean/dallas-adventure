@@ -11,7 +11,7 @@ const stops = [
       "Step outside the tall glass tower where we slept — your chariot idles at the curb",
     ],
     answer: "Uber from Hyatt Regency Frisco → Downtown Dallas",
-    description: "The day starts now! We're grabbing an Uber at 9 AM and heading 40 minutes south to the West End in downtown Dallas. Sit back, grab a coffee, and watch the skyline grow closer.",
+    description: "The day starts! We're grabbing an Uber at 9 AM and heading 40 minutes south to the West End in downtown Dallas. Sit back, grab a coffee, and watch the skyline grow closer.",
     vibe: "🌅 Fresh Start • Let's Roll",
     gradient: "linear-gradient(135deg, #2d1b69 0%, #4a2d8a 50%, #6b3fa0 100%)",
     accent: "#c4b5fd",
@@ -437,7 +437,7 @@ function StopCard({ stop, index, extraRevealContent }) {
 
         {/* Revealed state */}
         {phase === "revealed" && (
-          <div style={{ animation: "revealBurst 0.6s ease-out" }}>
+          <div style={{ animation: "revealBurst 0.6s ease-out", textAlign: "center" }}>
             <h2
               style={{
                 color: "#fff",
@@ -520,9 +520,6 @@ export default function App() {
   );
 
   const gateOpen = admin || now >= GATE_OPEN;
-  const msUntilAdventure = ADVENTURE_START.getTime() - now.getTime();
-  const nextClueUnlock = new Date(stopTimeToDate(stops[1].time).getTime() - 60 * 60 * 1000);
-  const msUntilNextClue = nextClueUnlock.getTime() - now.getTime();
   const visibleStops = admin
     ? stops
     : stops.filter((stop) => {
@@ -685,43 +682,12 @@ export default function App() {
                     margin: 0,
                   }}
                 >
-                  {msUntilNextClue > 0
-                    ? `The next clue to your day is ${formatCountdown(msUntilNextClue)} away!`
-                    : "Your next clue is waiting — tap to begin!"}
+                  Sit back, drink your coffee, and watch the skyline grow closer.
                 </p>
               </div>
             }
           />
         </div>
-
-        {/* Countdown */}
-        {msUntilAdventure > 0 && (
-          <div style={{ margin: "0 0 28px 0" }}>
-            <p
-              style={{
-                color: "#4a5568",
-                fontSize: "11px",
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                margin: "0 0 8px 0",
-              }}
-            >
-              Adventure begins in
-            </p>
-            <p
-              style={{
-                color: "#ffd166",
-                fontSize: "clamp(28px, 6vw, 40px)",
-                fontFamily: "'Courier New', monospace",
-                fontWeight: 700,
-                margin: 0,
-                letterSpacing: "2px",
-              }}
-            >
-              {formatCountdown(msUntilAdventure)}
-            </p>
-          </div>
-        )}
 
         {gateOpen ? (
           <div
