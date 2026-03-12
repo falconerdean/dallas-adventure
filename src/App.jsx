@@ -2,6 +2,23 @@ import { useState, useEffect, useRef } from "react";
 
 const stops = [
   {
+    time: "9:00 AM",
+    emoji: "🚗",
+    riddle: "The adventure begins when the car arrives — leave the room behind, the day's alive. A chariot summoned from your phone, whisking you off to the great unknown.",
+    hints: [
+      "No rental car, no parking to find",
+      "Just tap, wait, and ride",
+      "Our Uber awaits at the hotel lobby",
+    ],
+    answer: "Uber from the Hotel — Let's Go!",
+    description: "The day starts now! We're grabbing an Uber at 9 AM and heading straight into our Dallas adventure. No driving, no stress — just sit back and watch the city unfold.",
+    vibe: "🌅 Fresh Start • Let's Roll",
+    gradient: "linear-gradient(135deg, #2d1b69 0%, #4a2d8a 50%, #6b3fa0 100%)",
+    accent: "#c4b5fd",
+    icon: "🚙",
+    bgPattern: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(196,181,253,0.03) 35px, rgba(196,181,253,0.03) 70px)",
+  },
+  {
     time: "Morning",
     emoji: "🔍",
     riddle: "Behind a window on the sixth floor, history took a turn no one could ignore. A building of books hid a darker tale — where a motorcade passed through a fateful trail.",
