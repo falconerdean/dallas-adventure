@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 
 const stops = [
   {
-    time: "10:30 AM",
+    time: "10:50 AM",
     emoji: "🚗",
     riddle: "The adventure begins when the car arrives — leave the room behind, the day's alive. A chariot summoned from your phone, whisking you off to the great unknown.",
     hints: [
@@ -11,7 +11,7 @@ const stops = [
       "Step outside the tall glass tower where we slept — your chariot idles at the curb",
     ],
     answer: "Uber from Hyatt Regency Frisco → Downtown Dallas",
-    description: "The day starts! We're grabbing an Uber at 10:30 AM and heading 40 minutes south to the West End in downtown Dallas.",
+    description: "The day starts! We're grabbing an Uber at 10:50 AM and heading 40 minutes south to the West End in downtown Dallas.",
     vibe: "🌅 Fresh Start • Let's Roll",
     gradient: "linear-gradient(135deg, #2d1b69 0%, #4a2d8a 50%, #6b3fa0 100%)",
     accent: "#c4b5fd",
@@ -19,7 +19,7 @@ const stops = [
     bgPattern: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(196,181,253,0.03) 35px, rgba(196,181,253,0.03) 70px)",
   },
   {
-    time: "11:10 AM",
+    time: "11:30 AM",
     emoji: "🧳",
     riddle: "Before the fun begins, there's one quick stop — leave the weight behind, no bags to schlepp. Five minutes flat, then out the door — hands free to wander and explore.",
     hints: [
@@ -36,41 +36,7 @@ const stops = [
     bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(110,231,183,0.03) 35px, rgba(110,231,183,0.03) 70px)",
   },
   {
-    time: "11:20 AM",
-    emoji: "🪟",
-    riddle: "Behind a window on the sixth floor, history took a turn no one could ignore. A building of books hid a darker tale — with an audio guide to tell every detail.",
-    hints: [
-      "A warehouse of knowledge with one window the whole world knows by heart",
-      "Voices in your ears will walk you through what happened — take your time, it's worth it",
-      "Count the floors from the sidewalk. Stop at the one that changed a century.",
-    ],
-    answer: "The Sixth Floor Museum",
-    description: "Timed entry tickets booked for 10:00–10:30 — we're arriving a bit late but should be fine. Audio guide, walk through the exhibits, see the sniper's perch. About 75 minutes — it's worth taking your time.",
-    vibe: "🎧 Audio Guide • History • Must-See",
-    gradient: "linear-gradient(135deg, #1a1a2e 0%, #1e2d4a 50%, #243b5e 100%)",
-    accent: "#f472b6",
-    icon: "🏛️",
-    bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(244,114,182,0.03) 35px, rgba(244,114,182,0.03) 70px)",
-  },
-  {
-    time: "12:35 PM",
-    emoji: "🔍",
-    riddle: "Two marks on the road where the world stood still, a grassy rise where theories spill. An open memorial with no roof or wall — where a nation remembers the day that changed it all.",
-    hints: [
-      "A president waved, a clock stopped, and the world has argued about it ever since",
-      "Someone painted two pale letters on the pavement — and tourists still stand on them",
-      "A small hill with a picket fence that launched a thousand conspiracy theories",
-    ],
-    answer: "Dealey Plaza, Grassy Knoll & JFK Memorial",
-    description: "Walk the plaza where history unfolded. Find the X marks on Elm Street, stand on the Grassy Knoll — it hits harder after the museum exhibit. About 20–30 minutes to take it all in.",
-    vibe: "🏛️ History • Reflection • Iconic",
-    gradient: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
-    accent: "#e94560",
-    icon: "📍",
-    bgPattern: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(233,69,96,0.03) 35px, rgba(233,69,96,0.03) 70px)",
-  },
-  {
-    time: "1:00 PM",
+    time: "11:45 AM",
     emoji: "🌶️",
     riddle: "Not Tex-Mex, not tacos from a truck — but something deeper, ancient, and full of luck. Think mole that simmers for days on end, and hand-ground corn from a tradition that won't bend.",
     hints: [
@@ -87,7 +53,41 @@ const stops = [
     bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(244,162,97,0.03) 35px, rgba(244,162,97,0.03) 70px)",
   },
   {
-    time: "2:30 PM",
+    time: "1:00 PM",
+    emoji: "🪟",
+    riddle: "Behind a window on the sixth floor, history took a turn no one could ignore. A building of books hid a darker tale — with an audio guide to tell every detail.",
+    hints: [
+      "A warehouse of knowledge with one window the whole world knows by heart",
+      "Voices in your ears will walk you through what happened — take your time, it's worth it",
+      "Count the floors from the sidewalk. Stop at the one that changed a century.",
+    ],
+    answer: "The Sixth Floor Museum",
+    description: "Audio guide, walk through the exhibits, see the sniper's perch. About 75 minutes — it's worth taking your time.",
+    vibe: "🎧 Audio Guide • History • Must-See",
+    gradient: "linear-gradient(135deg, #1a1a2e 0%, #1e2d4a 50%, #243b5e 100%)",
+    accent: "#f472b6",
+    icon: "🏛️",
+    bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(244,114,182,0.03) 35px, rgba(244,114,182,0.03) 70px)",
+  },
+  {
+    time: "2:15 PM",
+    emoji: "🔍",
+    riddle: "Two marks on the road where the world stood still, a grassy rise where theories spill. An open memorial with no roof or wall — where a nation remembers the day that changed it all.",
+    hints: [
+      "A president waved, a clock stopped, and the world has argued about it ever since",
+      "Someone painted two pale letters on the pavement — and tourists still stand on them",
+      "A small hill with a picket fence that launched a thousand conspiracy theories",
+    ],
+    answer: "Dealey Plaza, Grassy Knoll & JFK Memorial",
+    description: "Walk the plaza where history unfolded. Find the X marks on Elm Street, stand on the Grassy Knoll — it hits harder after the museum exhibit. About 20–30 minutes to take it all in.",
+    vibe: "🏛️ History • Reflection • Iconic",
+    gradient: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+    accent: "#e94560",
+    icon: "📍",
+    bgPattern: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(233,69,96,0.03) 35px, rgba(233,69,96,0.03) 70px)",
+  },
+  {
+    time: "2:45 PM",
     emoji: "🌸",
     riddle: "Sixty-six acres where the earth paints itself in every color spring can dream. Thousands of petals open their eyes when the Texas sun begins to gleam.",
     hints: [
@@ -96,7 +96,7 @@ const stops = [
       "Sixty-six acres of living confetti — the azaleas are the headliners this week",
     ],
     answer: "Dallas Arboretum & Botanical Garden",
-    description: "Dallas Blooms! Buy tickets at the gate. 500,000+ spring blooms, azaleas nearing peak, and stunning views over White Rock Lake. About 90 minutes to wander bag-free.",
+    description: "Dallas Blooms! Buy tickets at the gate. 500,000+ spring blooms, azaleas nearing peak, and stunning views over White Rock Lake. About 75 minutes to wander bag-free.",
     vibe: "🌷 Nature • Beauty • Wandering",
     gradient: "linear-gradient(135deg, #184e3a 0%, #2d6a4f 50%, #40916c 100%)",
     accent: "#95d5b2",
@@ -168,7 +168,7 @@ function stopTimeToDate(timeStr) {
   return new Date(Date.UTC(2026, 2, 13, h + CDT_OFFSET, minutes, 0));
 }
 
-const ADVENTURE_START = stopTimeToDate("10:30 AM");
+const ADVENTURE_START = stopTimeToDate("10:50 AM");
 const GATE_OPEN = new Date(ADVENTURE_START.getTime() - 60 * 60 * 1000);
 
 function formatCountdown(ms) {
