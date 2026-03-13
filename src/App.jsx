@@ -20,6 +20,7 @@ const stops = [
   },
   {
     time: "10:40 AM",
+    revealAt: "9:56 AM",
     emoji: "🧳",
     riddle: "Before the fun begins, there's one quick stop — leave the weight behind, no bags to schlepp. Five minutes flat, then out the door — hands free to wander and explore.",
     hints: [
@@ -37,6 +38,7 @@ const stops = [
   },
   {
     time: "10:50 AM",
+    revealAt: "10:06 AM",
     emoji: "🪟",
     riddle: "Behind a window on the sixth floor, history took a turn no one could ignore. A building of books hid a darker tale — with an audio guide to tell every detail.",
     hints: [
@@ -529,18 +531,20 @@ export default function App() {
 
   const gateOpen = admin || now >= GATE_OPEN;
   const msUntilAdventure = ADVENTURE_START.getTime() - now.getTime();
+  function getRevealDate(stop) {
+    if (stop.revealAt) return stopTimeToDate(stop.revealAt);
+    return new Date(stopTimeToDate(stop.time).getTime() - 60 * 60 * 1000);
+  }
+
   const visibleStops = admin
     ? stops
-    : stops.filter((stop) => {
-        const stopDate = stopTimeToDate(stop.time);
-        return now >= new Date(stopDate.getTime() - 60 * 60 * 1000);
-      });
+    : stops.filter((stop) => now >= getRevealDate(stop));
 
   const nextStop = !admin && visibleStops.length < stops.length
     ? stops[visibleStops.length]
     : null;
   const msUntilNextStop = nextStop
-    ? stopTimeToDate(nextStop.time).getTime() - 60 * 60 * 1000 - now.getTime()
+    ? getRevealDate(nextStop).getTime() - now.getTime()
     : null;
 
   const hasScrolledOnLoad = useRef(false);
