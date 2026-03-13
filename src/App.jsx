@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 
 const stops = [
   {
-    time: "10:00 AM",
+    time: "10:30 AM",
     emoji: "🚗",
     riddle: "The adventure begins when the car arrives — leave the room behind, the day's alive. A chariot summoned from your phone, whisking you off to the great unknown.",
     hints: [
@@ -11,7 +11,7 @@ const stops = [
       "Step outside the tall glass tower where we slept — your chariot idles at the curb",
     ],
     answer: "Uber from Hyatt Regency Frisco → Downtown Dallas",
-    description: "The day starts! We're grabbing an Uber at 10 AM and heading 40 minutes south to the West End in downtown Dallas.",
+    description: "The day starts! We're grabbing an Uber at 10:30 AM and heading 40 minutes south to the West End in downtown Dallas.",
     vibe: "🌅 Fresh Start • Let's Roll",
     gradient: "linear-gradient(135deg, #2d1b69 0%, #4a2d8a 50%, #6b3fa0 100%)",
     accent: "#c4b5fd",
@@ -19,8 +19,7 @@ const stops = [
     bgPattern: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(196,181,253,0.03) 35px, rgba(196,181,253,0.03) 70px)",
   },
   {
-    time: "10:40 AM",
-    revealAt: "9:56 AM",
+    time: "11:10 AM",
     emoji: "🧳",
     riddle: "Before the fun begins, there's one quick stop — leave the weight behind, no bags to schlepp. Five minutes flat, then out the door — hands free to wander and explore.",
     hints: [
@@ -37,8 +36,7 @@ const stops = [
     bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(110,231,183,0.03) 35px, rgba(110,231,183,0.03) 70px)",
   },
   {
-    time: "10:50 AM",
-    revealAt: "10:06 AM",
+    time: "11:20 AM",
     emoji: "🪟",
     riddle: "Behind a window on the sixth floor, history took a turn no one could ignore. A building of books hid a darker tale — with an audio guide to tell every detail.",
     hints: [
@@ -55,7 +53,7 @@ const stops = [
     bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(244,114,182,0.03) 35px, rgba(244,114,182,0.03) 70px)",
   },
   {
-    time: "12:00 PM",
+    time: "12:35 PM",
     emoji: "🔍",
     riddle: "Two marks on the road where the world stood still, a grassy rise where theories spill. An open memorial with no roof or wall — where a nation remembers the day that changed it all.",
     hints: [
@@ -72,7 +70,7 @@ const stops = [
     bgPattern: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(233,69,96,0.03) 35px, rgba(233,69,96,0.03) 70px)",
   },
   {
-    time: "12:30 PM",
+    time: "1:00 PM",
     emoji: "🌶️",
     riddle: "Not Tex-Mex, not tacos from a truck — but something deeper, ancient, and full of luck. Think mole that simmers for days on end, and hand-ground corn from a tradition that won't bend.",
     hints: [
@@ -89,7 +87,7 @@ const stops = [
     bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(244,162,97,0.03) 35px, rgba(244,162,97,0.03) 70px)",
   },
   {
-    time: "2:00 PM",
+    time: "2:30 PM",
     emoji: "🌸",
     riddle: "Sixty-six acres where the earth paints itself in every color spring can dream. Thousands of petals open their eyes when the Texas sun begins to gleam.",
     hints: [
@@ -106,7 +104,7 @@ const stops = [
     bgPattern: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(149,213,178,0.03) 35px, rgba(149,213,178,0.03) 70px)",
   },
   {
-    time: "3:30 PM",
+    time: "4:00 PM",
     emoji: "🎒",
     riddle: "Retrace your steps to where the day began — grab what you left and catch a van. The adventure's not done, but the bags come along — next stop: the airport where we belong.",
     hints: [
@@ -170,7 +168,7 @@ function stopTimeToDate(timeStr) {
   return new Date(Date.UTC(2026, 2, 13, h + CDT_OFFSET, minutes, 0));
 }
 
-const ADVENTURE_START = stopTimeToDate("10:00 AM");
+const ADVENTURE_START = stopTimeToDate("10:30 AM");
 const GATE_OPEN = new Date(ADVENTURE_START.getTime() - 60 * 60 * 1000);
 
 function formatCountdown(ms) {
