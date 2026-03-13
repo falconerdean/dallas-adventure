@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 
 const stops = [
   {
-    time: "9:00 AM",
+    time: "10:00 AM",
     emoji: "🚗",
     riddle: "The adventure begins when the car arrives — leave the room behind, the day's alive. A chariot summoned from your phone, whisking you off to the great unknown.",
     hints: [
@@ -11,7 +11,7 @@ const stops = [
       "Step outside the tall glass tower where we slept — your chariot idles at the curb",
     ],
     answer: "Uber from Hyatt Regency Frisco → Downtown Dallas",
-    description: "The day starts! We're grabbing an Uber at 9 AM and heading 40 minutes south to the West End in downtown Dallas.",
+    description: "The day starts! We're grabbing an Uber at 10 AM and heading 40 minutes south to the West End in downtown Dallas.",
     vibe: "🌅 Fresh Start • Let's Roll",
     gradient: "linear-gradient(135deg, #2d1b69 0%, #4a2d8a 50%, #6b3fa0 100%)",
     accent: "#c4b5fd",
@@ -19,7 +19,7 @@ const stops = [
     bgPattern: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(196,181,253,0.03) 35px, rgba(196,181,253,0.03) 70px)",
   },
   {
-    time: "9:40 AM",
+    time: "10:40 AM",
     emoji: "🧳",
     riddle: "Before the fun begins, there's one quick stop — leave the weight behind, no bags to schlepp. Five minutes flat, then out the door — hands free to wander and explore.",
     hints: [
@@ -28,7 +28,7 @@ const stops = [
       "Rhymes with 'pounce' — five minutes and your arms are free as birds",
     ],
     answer: "Bounce Bag Drop — Travel Light!",
-    description: "Quick 5-minute pit stop at Bounce luggage storage in the West End. We drop our bags, they keep them safe all day, and we pick them up later. Hands free from here on out!",
+    description: "Quick pit stop at Bounce luggage storage in the West End. We drop 4 bags (2 suitcases + 2 backpacks, pre-paid), they keep them safe all day, and we pick them up later. Hands free from here on out!",
     vibe: "✨ Light • Free • Easy",
     gradient: "linear-gradient(135deg, #1a3a2a 0%, #2d5a3f 50%, #3d7a5f 100%)",
     accent: "#6ee7b7",
@@ -36,7 +36,24 @@ const stops = [
     bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(110,231,183,0.03) 35px, rgba(110,231,183,0.03) 70px)",
   },
   {
-    time: "9:50 AM",
+    time: "10:50 AM",
+    emoji: "🪟",
+    riddle: "Behind a window on the sixth floor, history took a turn no one could ignore. A building of books hid a darker tale — with an audio guide to tell every detail.",
+    hints: [
+      "A warehouse of knowledge with one window the whole world knows by heart",
+      "Voices in your ears will walk you through what happened — take your time, it's worth it",
+      "Count the floors from the sidewalk. Stop at the one that changed a century.",
+    ],
+    answer: "The Sixth Floor Museum",
+    description: "Timed entry tickets booked for 10:00–10:30 — we're arriving a bit late but should be fine. Audio guide, walk through the exhibits, see the sniper's perch. About 75 minutes — it's worth taking your time.",
+    vibe: "🎧 Audio Guide • History • Must-See",
+    gradient: "linear-gradient(135deg, #1a1a2e 0%, #1e2d4a 50%, #243b5e 100%)",
+    accent: "#f472b6",
+    icon: "🏛️",
+    bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(244,114,182,0.03) 35px, rgba(244,114,182,0.03) 70px)",
+  },
+  {
+    time: "12:00 PM",
     emoji: "🔍",
     riddle: "Two marks on the road where the world stood still, a grassy rise where theories spill. An open memorial with no roof or wall — where a nation remembers the day that changed it all.",
     hints: [
@@ -45,46 +62,12 @@ const stops = [
       "A small hill with a picket fence that launched a thousand conspiracy theories",
     ],
     answer: "Dealey Plaza, Grassy Knoll & JFK Memorial",
-    description: "Walk the plaza where history unfolded. Find the two X marks on Elm Street, stand on the Grassy Knoll, and visit the open-air JFK Memorial nearby. About 25 minutes to take it all in.",
+    description: "Walk the plaza where history unfolded. Find the X marks on Elm Street, stand on the Grassy Knoll — it hits harder after the museum exhibit. About 20–30 minutes to take it all in.",
     vibe: "🏛️ History • Reflection • Iconic",
     gradient: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
     accent: "#e94560",
     icon: "📍",
     bgPattern: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(233,69,96,0.03) 35px, rgba(233,69,96,0.03) 70px)",
-  },
-  {
-    time: "10:15 AM",
-    emoji: "🪟",
-    riddle: "Behind a window on the sixth floor, history took a turn no one could ignore. A building of books hid a darker tale — with an audio guide to tell every detail.",
-    hints: [
-      "A warehouse of knowledge with one window the whole world knows by heart",
-      "Voices in your ears will walk you through what happened — tick tock, 10:15 sharp",
-      "Count the floors from the sidewalk. Stop at the one that changed a century.",
-    ],
-    answer: "The Sixth Floor Museum",
-    description: "Timed entry with an audio guide. Walk through the exhibits, see the sniper's perch, and stand at the window overlooking Dealey Plaza. Allow about 90 minutes — it's worth taking your time.",
-    vibe: "🎧 Audio Guide • History • Must-See",
-    gradient: "linear-gradient(135deg, #1a1a2e 0%, #1e2d4a 50%, #243b5e 100%)",
-    accent: "#f472b6",
-    icon: "🏛️",
-    bgPattern: "repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(244,114,182,0.03) 35px, rgba(244,114,182,0.03) 70px)",
-  },
-  {
-    time: "11:45 AM",
-    emoji: "☕",
-    riddle: "A park built on air, above the cars below — where food trucks gather in a row. Grab a coffee, take a stroll, with the Arts District skyline stealing the show.",
-    hints: [
-      "Beneath your feet, a thousand cars zoom past — but up here, only birdsong and breezes",
-      "Rolling kitchens serve everything from crêpes to Korean, parked on a lawn that shouldn't exist",
-      "Two first names, one famous park — the man it honors helped build modern Dallas",
-    ],
-    answer: "Klyde Warren Park",
-    description: "A 10-minute walk from the museum. Stroll the famous deck park built over a freeway, grab a coffee or snack from the food trucks, and soak in the Arts District skyline. About 30 minutes to decompress.",
-    vibe: "🌳 Stroll • Coffee • Skyline",
-    gradient: "linear-gradient(135deg, #2a1f0e 0%, #4a3520 50%, #6b4c30 100%)",
-    accent: "#fbbf24",
-    icon: "🌳",
-    bgPattern: "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(251,191,36,0.03) 35px, rgba(251,191,36,0.03) 70px)",
   },
   {
     time: "12:30 PM",
@@ -96,7 +79,7 @@ const stops = [
       "A Mesoamerican goddess lends her name to this place — and the patio margaritas are mandatory",
     ],
     answer: "Authentic Interior Mexican Lunch",
-    description: "A quick Uber to Meso Maya on McKinney Ave. Try the ceviche, the cochinita pibil, and a house margarita. If the weather's nice, we're sitting on the patio. About 75 minutes to savor it all.",
+    description: "Meso Maya Downtown, 1611 McKinney Ave — Resy reservation for 2 in the Dining Room. Mole, margaritas, patio if weather's nice. About 75 minutes to savor it all.",
     vibe: "🍽️ Flavors • Patio • Margaritas",
     gradient: "linear-gradient(135deg, #4a1942 0%, #6b2d5b 50%, #c94277 100%)",
     accent: "#f4a261",
@@ -113,7 +96,7 @@ const stops = [
       "Sixty-six acres of living confetti — the azaleas are the headliners this week",
     ],
     answer: "Dallas Arboretum & Botanical Garden",
-    description: "A 15-minute Uber ride and we're at Dallas Blooms — the largest floral festival in the Southwest. 500,000+ spring blooms, azaleas nearing peak, and stunning views over White Rock Lake. About 90 minutes to wander bag-free.",
+    description: "Dallas Blooms! Buy tickets at the gate. 500,000+ spring blooms, azaleas nearing peak, and stunning views over White Rock Lake. About 90 minutes to wander bag-free.",
     vibe: "🌷 Nature • Beauty • Wandering",
     gradient: "linear-gradient(135deg, #184e3a 0%, #2d6a4f 50%, #40916c 100%)",
     accent: "#95d5b2",
@@ -130,7 +113,7 @@ const stops = [
       "Bags reunited, then one last ride — toward the place where the ground becomes sky",
     ],
     answer: "Bag Pickup → Uber to DFW",
-    description: "Uber back to West End to grab our bags from Bounce, then a 25-minute ride to DFW Terminal E. We'll clear security and take the Skylink train to Terminal D. The adventure's not over yet!",
+    description: "Uber back to West End, pick up bags from Bounce, then a ~25-minute ride to DFW. The adventure's not over yet!",
     vibe: "🚕 Homeward Bound • One More Stop",
     gradient: "linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%)",
     accent: "#94a3b8",
@@ -147,7 +130,7 @@ const stops = [
       "A Roman warrior stands guard near gate D12, and the cocktails inside are dangerously good",
     ],
     answer: "The Centurion Lounge at DFW",
-    description: "The brand new AMEX Centurion Lounge, right across from gate D12. Craft cocktails, chef-curated bites, and 90 minutes to decompress after a full day. We've earned this one.",
+    description: "AMEX Centurion Lounge, Terminal D — Platinum card gets you in. Craft cocktails, chef-curated bites, and ~90 minutes to decompress after a full day. We've earned this one.",
     vibe: "🛋️ Relax • Cocktails • Recharge",
     gradient: "linear-gradient(135deg, #1b2838 0%, #2c3e6b 50%, #4a69a8 100%)",
     accent: "#ffd166",
@@ -164,7 +147,7 @@ const stops = [
       "Three digits and two letters carry us home to the land of rain, evergreens, and coffee",
     ],
     answer: "Board AS 317 → Seattle! 🌲",
-    description: "Skylink back to Terminal E, board at Gate E11, and we're homeward bound. One last Texas sunset from 35,000 feet to cap off a perfect Dallas day.",
+    description: "Skylink back to Terminal E, board AS 317 at Gate E11, and we're homeward bound. One last Texas sunset from 35,000 feet to cap off a perfect Dallas day.",
     vibe: "🌅 Sunset • Homeward • Memories",
     gradient: "linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #4a2d7a 100%)",
     accent: "#a78bfa",
@@ -185,7 +168,7 @@ function stopTimeToDate(timeStr) {
   return new Date(Date.UTC(2026, 2, 13, h + CDT_OFFSET, minutes, 0));
 }
 
-const ADVENTURE_START = stopTimeToDate("9:00 AM");
+const ADVENTURE_START = stopTimeToDate("10:00 AM");
 const GATE_OPEN = new Date(ADVENTURE_START.getTime() - 60 * 60 * 1000);
 
 function formatCountdown(ms) {
@@ -618,17 +601,15 @@ export default function App() {
               margin: 0,
             }}
           >
-            A day in ten acts beneath the Lone Star:
+            A day in nine acts beneath the Lone Star:
             <br />
             Leave your burdens with strangers — you'll travel far.
             <br />
-            Walk where a nation's heart cracked in the street,
+            Peer through the window where two timelines meet,
             <br />
-            then peer through the window where two timelines meet.
+            then walk where a nation's heart cracked in the street.
             <br />
             Feast where gods stirred chocolate into fire,
-            <br />
-            drift through a garden that hovers on air,
             <br />
             wade through a sea of petals dressed for a ball,
             <br />
@@ -636,7 +617,7 @@ export default function App() {
             <br />
             When the sun paints the sky, a silver bird calls —
             <br />
-            ten secrets, ten riddles, ten curtains that fall.
+            nine secrets, nine riddles, nine curtains that fall.
           </p>
         </div>
 
@@ -683,7 +664,7 @@ export default function App() {
                     margin: 0,
                   }}
                 >
-                  Sit back, drink your coffee, and watch the skyline grow closer.
+                  Sit back, relax, and watch the skyline grow closer.
                 </p>
               </div>
             }
