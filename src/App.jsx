@@ -478,11 +478,10 @@ export default function App() {
   const [now, setNow] = useState(() => new Date());
   const admin = useAdmin();
 
-  // Tick every second on start page (countdown), every 60s on timeline (stop reveals)
   useEffect(() => {
-    const interval = setInterval(() => setNow(new Date()), started ? 60000 : 1000);
+    const interval = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(interval);
-  }, [started]);
+  }, []);
 
   useEffect(() => {
     if (started) {
@@ -502,6 +501,9 @@ export default function App() {
     [],
   );
 
+  const lastCardRef = useRef(null);
+  const prevVisibleCount = useRef(0);
+
   const gateOpen = admin || now >= GATE_OPEN;
   const msUntilAdventure = ADVENTURE_START.getTime() - now.getTime();
   const visibleStops = admin
@@ -510,6 +512,22 @@ export default function App() {
         const stopDate = stopTimeToDate(stop.time);
         return now >= new Date(stopDate.getTime() - 60 * 60 * 1000);
       });
+
+  const nextStop = !admin && visibleStops.length < stops.length
+    ? stops[visibleStops.length]
+    : null;
+  const msUntilNextStop = nextStop
+    ? stopTimeToDate(nextStop.time).getTime() - 60 * 60 * 1000 - now.getTime()
+    : null;
+
+  useEffect(() => {
+    if (started && visibleStops.length > prevVisibleCount.current && prevVisibleCount.current > 0) {
+      setTimeout(() => {
+        lastCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 200);
+    }
+    prevVisibleCount.current = visibleStops.length;
+  }, [visibleStops.length, started]);
 
   if (!started) {
     return (
@@ -848,7 +866,11 @@ export default function App() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: "24px", position: "relative" }}>
           {visibleStops.map((stop, i) => (
-            <div key={i} style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
+            <div
+              key={i}
+              ref={i === visibleStops.length - 1 ? lastCardRef : undefined}
+              style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}
+            >
               {/* Timeline dot */}
               <div
                 style={{
@@ -874,12 +896,25 @@ export default function App() {
               style={{
                 textAlign: "center",
                 padding: "32px 16px",
-                animation: "pulse 3s ease-in-out infinite",
               }}
             >
-              <p style={{ color: "#4a5568", fontSize: "14px", fontStyle: "italic" }}>
+              <p style={{ color: "#4a5568", fontSize: "14px", fontStyle: "italic", animation: "pulse 3s ease-in-out infinite" }}>
                 ✨ More stops will appear as the day unfolds...
               </p>
+              {msUntilNextStop != null && msUntilNextStop > 0 && (
+                <p
+                  style={{
+                    color: "#ffd166",
+                    fontSize: "clamp(18px, 4vw, 24px)",
+                    fontFamily: "'Courier New', monospace",
+                    fontWeight: 700,
+                    margin: "12px 0 0 0",
+                    letterSpacing: "2px",
+                  }}
+                >
+                  {formatCountdown(msUntilNextStop)}
+                </p>
+              )}
             </div>
           )}
         </div>
