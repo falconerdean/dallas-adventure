@@ -224,19 +224,27 @@ function Sparkle({ x, y, delay }) {
 }
 
 function StopCard({ stop, index, extraRevealContent }) {
-  const [phase, setPhase] = useState("sealed"); // sealed, hints, revealed
-  const [currentHint, setCurrentHint] = useState(0);
+  const cardKey = `card-${stop.time}`;
+  const saved = loadState()[cardKey];
+  const [phase, setPhase] = useState(saved?.phase || "sealed");
+  const [currentHint, setCurrentHint] = useState(saved?.hint || 0);
   const [showConfetti, setShowConfetti] = useState(false);
   const cardRef = useRef(null);
+
+  const persistCard = (p, h) => saveState({ [cardKey]: { phase: p, hint: h } });
 
   const handleClick = () => {
     if (phase === "sealed") {
       setPhase("hints");
+      persistCard("hints", 0);
     } else if (phase === "hints") {
       if (currentHint < stop.hints.length - 1) {
-        setCurrentHint((prev) => prev + 1);
+        const next = currentHint + 1;
+        setCurrentHint(next);
+        persistCard("hints", next);
       } else {
         setPhase("revealed");
+        persistCard("revealed", currentHint);
         setShowConfetti(true);
         setTimeout(() => setShowConfetti(false), 2000);
       }
@@ -472,8 +480,23 @@ function StopCard({ stop, index, extraRevealContent }) {
   );
 }
 
+const STORAGE_KEY = "dallas-adventure";
+
+function loadState() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  } catch { return {}; }
+}
+
+function saveState(update) {
+  try {
+    const current = loadState();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, ...update }));
+  } catch {}
+}
+
 export default function App() {
-  const [started, setStarted] = useState(false);
+  const [started, setStarted] = useState(() => loadState().started || false);
   const [titleVisible, setTitleVisible] = useState(false);
   const [now, setNow] = useState(() => new Date());
   const admin = useAdmin();
@@ -520,6 +543,8 @@ export default function App() {
     ? stopTimeToDate(nextStop.time).getTime() - 60 * 60 * 1000 - now.getTime()
     : null;
 
+  const hasScrolledOnLoad = useRef(false);
+
   useEffect(() => {
     if (started && visibleStops.length > prevVisibleCount.current && prevVisibleCount.current > 0) {
       setTimeout(() => {
@@ -528,6 +553,15 @@ export default function App() {
     }
     prevVisibleCount.current = visibleStops.length;
   }, [visibleStops.length, started]);
+
+  useEffect(() => {
+    if (started && !hasScrolledOnLoad.current && visibleStops.length > 1) {
+      hasScrolledOnLoad.current = true;
+      setTimeout(() => {
+        lastCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 600);
+    }
+  }, [started, visibleStops.length]);
 
   if (!started) {
     return (
@@ -546,7 +580,7 @@ export default function App() {
           overflow: "hidden",
           position: "relative",
         }}
-        onClick={() => gateOpen && setStarted(true)}
+        onClick={() => { if (gateOpen) { setStarted(true); saveState({ started: true }); } }}
       >
         {/* Background stars */}
         {stars.map((star, i) => (
