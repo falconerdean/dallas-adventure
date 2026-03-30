@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walla Walla Winery Trip — May 1–2, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f8f5f0;
+    color: #2d2926;
+    line-height: 1.6;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #3b1f2b 0%, #5a2d3e 40%, #7a3e52 100%);
+    color: white;
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+
+  .hero .subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.85;
+    letter-spacing: 0.05em;
+  }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+
+  /* Day header */
+  .day-header {
+    margin-top: 48px;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #7a3e52;
+  }
+
+  .day-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #3b1f2b;
+  }
+
+  .day-header .day-theme {
+    font-size: 0.9rem;
+    color: #7a3e52;
+    font-weight: 500;
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Stop card */
+  .stop {
+    background: white;
+    border-radius: 12px;
+    padding: 28px 28px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: relative;
+    border-left: 4px solid #7a3e52;
+  }
+
+  .stop-number {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: #7a3e52;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .stop h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: #3b1f2b;
+    margin-bottom: 4px;
+  }
+
+  .stop .time-badge {
+    display: inline-block;
+    background: #f3e8ed;
+    color: #7a3e52;
+    font-weight: 600;
+    font-size: 0.82rem;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  .stop .meta {
+    font-size: 0.88rem;
+    color: #6b6560;
+    margin-bottom: 14px;
+  }
+
+  .stop .meta span { display: block; margin-bottom: 3px; }
+
+  .stop .vibe {
+    font-size: 0.92rem;
+    color: #4a4540;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .stop .details {
+    font-size: 0.88rem;
+    color: #5a5550;
+  }
+
+  .stop .details strong { color: #3b1f2b; }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-right: 6px;
+    margin-top: 10px;
+  }
+
+  .tag.reservation { background: #fde8e8; color: #b91c1c; }
+  .tag.walkin { background: #e8f5e8; color: #2d7a2d; }
+  .tag.food { background: #fef3e2; color: #b45309; }
+
+  /* Drive connector */
+  .drive {
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.82rem;
+    color: #9a918a;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .drive::before { content: '↓  '; }
+  .drive::after { content: '  ↓'; }
+
+  /* Dinner card */
+  .dinner {
+    background: linear-gradient(135deg, #3b1f2b, #5a2d3e);
+    color: white;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+    margin-top: 8px;
+  }
+
+  .dinner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+  }
+
+  .dinner .time-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-weight: 600;
+    font-size: 0.82rem;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  .dinner .meta { font-size: 0.88rem; opacity: 0.8; margin-bottom: 10px; }
+  .dinner .meta span { display: block; margin-bottom: 3px; }
+  .dinner .details { font-size: 0.9rem; opacity: 0.9; }
+
+  /* Action items */
+  .actions {
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0 60px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid #b91c1c;
+  }
+
+  .actions h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #b91c1c;
+    margin-bottom: 16px;
+  }
+
+  .actions ol {
+    padding-left: 20px;
+    font-size: 0.92rem;
+    color: #4a4540;
+  }
+
+  .actions li { margin-bottom: 10px; }
+  .actions li strong { color: #3b1f2b; }
+
+  .actions .note {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: #7a7570;
+    font-style: italic;
+    border-top: 1px solid #e8e4e0;
+    padding-top: 12px;
+  }
+
+  /* Route summary */
+  .route-summary {
+    background: #f3e8ed;
+    border-radius: 12px;
+    padding: 20px 28px;
+    margin-bottom: 28px;
+    font-size: 0.88rem;
+    color: #5a2d3e;
+  }
+
+  .route-summary strong { color: #3b1f2b; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Walla Walla Wine Weekend</h1>
+  <p class="subtitle">May 1 – 2, 2026 &nbsp;·&nbsp; 6 wineries &nbsp;·&nbsp; 2 dinners</p>
+</div>
+
+<div class="container">
+
+  <!-- ============ FRIDAY ============ -->
+  <div class="day-header">
+    <h2>Friday, May 1</h2>
+    <div class="day-theme">Elevated + Scenic</div>
+  </div>
+
+  <div class="route-summary">
+    <strong>Friday route:</strong> Caprio (south side) → Tranche (east side) → àMaurice (east side) → Downtown dinner. All stops within ~15 min of each other.
+  </div>
+
+  <!-- Stop 1 -->
+  <div class="stop">
+    <div class="stop-number">1</div>
+    <h3>Caprio Cellars</h3>
+    <div class="time-badge">11:00 AM reservation</div>
+    <div class="meta">
+      <span>📍 1603 Whitely Rd, Walla Walla, WA 99362</span>
+      <span>📞 509-412-3054 &nbsp;·&nbsp; capriocellars.com</span>
+    </div>
+    <div class="vibe">360° valley views · complimentary food + wine pairing · sets the tone for the whole trip</div>
+    <div class="details">
+      Bordeaux-inspired wines paired with scratch-made seasonal plates from Chef Williams. No tasting fee — the food pairing is included. This replaces lunch. Tastings limited to 20 people, so the room stays intimate. Plan for ~90 min.
+    </div>
+    <span class="tag reservation">Reservation required</span>
+    <span class="tag food">Food pairing included</span>
+  </div>
+
+  <div class="drive">~10 min drive via Mill Creek Rd</div>
+
+  <!-- Stop 2 -->
+  <div class="stop">
+    <div class="stop-number">2</div>
+    <h3>Tranche</h3>
+    <div class="time-badge">1:00 PM reservation</div>
+    <div class="meta">
+      <span>📍 705 Berney Dr, Walla Walla, WA 99362</span>
+      <span>📞 509-526-3500 &nbsp;·&nbsp; tranche.wine</span>
+    </div>
+    <div class="vibe">Big views, structured reds · beautiful contrast after Caprio's intimacy</div>
+    <div class="details">
+      Known for estate-grown Bordeaux varieties and panoramic Blue Mountain views. May hours: Sun–Thu 11am–5pm, Fri–Sat 11am–9pm. Plan for ~60 min tasting.
+    </div>
+    <span class="tag reservation">Reservation recommended</span>
+  </div>
+
+  <div class="drive">~12 min drive east toward Mill Creek</div>
+
+  <!-- Stop 3 -->
+  <div class="stop">
+    <div class="stop-number">3</div>
+    <h3>àMaurice Cellars</h3>
+    <div class="time-badge">2:30 PM</div>
+    <div class="meta">
+      <span>📍 178 Vineyard Ln, Walla Walla, WA 99362</span>
+      <span>📞 509-522-5444 &nbsp;·&nbsp; amaurice.com</span>
+    </div>
+    <div class="vibe">Chill, pretty, slightly softer finish · ideal golden hour stop</div>
+    <div class="details">
+      Fri–Sat 10:30am–4:30pm. Relaxed, scenic setting with a softer wine profile than the earlier stops. Walk-ins welcome as space allows, but call ahead to be safe. Winds down by 4:30 — perfect timing to head to dinner. Plan ~60 min.
+    </div>
+    <span class="tag reservation">Reservation recommended</span>
+  </div>
+
+  <div class="drive">~15 min drive to downtown</div>
+
+  <!-- Friday dinner -->
+  <div class="dinner">
+    <h3>🍽️ Dinner — The Kitchen at Abeja</h3>
+    <div class="time-badge">5:30 PM seating</div>
+    <div class="meta">
+      <span>📍 2014 Mill Creek Rd, Walla Walla, WA 99362</span>
+      <span>📞 509-526-7400 &nbsp;·&nbsp; Book on Tock</span>
+    </div>
+    <div class="details">
+      Five-course prix fixe ($135/person) with optional wine pairing ($55/person). Seven-course option at $165 + $65 pairing. Chef Mike Easton's monthly menu showcases Pacific Northwest ingredients paired with Abeja wines. Seatings Thu–Sun, 5:30–7:30pm. Book early — this is a destination dinner.
+    </div>
+  </div>
+
+  <!-- ============ SATURDAY ============ -->
+  <div class="day-header">
+    <h2>Saturday, May 2</h2>
+    <div class="day-theme">Rocks District + Experience + Social</div>
+  </div>
+
+  <div class="route-summary">
+    <strong>Saturday route:</strong> Rotie (Milton-Freewater, ~25 min south) → Abeja estate (east side, ~20 min back) → Downtown walk-around. Ends where you can park once and wander.
+  </div>
+
+  <!-- Stop 4 -->
+  <div class="stop">
+    <div class="stop-number">4</div>
+    <h3>Rotie Cellars — Rocks Estate</h3>
+    <div class="time-badge">11:00 AM reservation</div>
+    <div class="meta">
+      <span>📍 84328 Trumbull Ln, Milton-Freewater, OR 97862</span>
+      <span>📞 509-301-9074 &nbsp;·&nbsp; rotiecellars.com</span>
+    </div>
+    <div class="vibe">Rocks District terroir · rugged, earthy, distinct</div>
+    <div class="details">
+      Appointment times: 11:00, 12:30, 2:00, 3:30. Open daily by appointment — call ahead for same-day. $40/person tasting fee, waived with $75 purchase. This is in The Rocks District (Milton-Freewater, OR) — unique cobblestone terroir you can feel in the wines. Plan ~75 min.
+    </div>
+    <span class="tag reservation">Reservation required</span>
+  </div>
+
+  <div class="drive">~20 min drive north to Mill Creek Rd</div>
+
+  <!-- Stop 5 -->
+  <div class="stop">
+    <div class="stop-number">5</div>
+    <h3>Abeja Winery — Estate Tasting</h3>
+    <div class="time-badge">1:00 PM reservation</div>
+    <div class="meta">
+      <span>📍 2014 Mill Creek Rd, Walla Walla, WA 99362</span>
+      <span>📞 509-526-7400 &nbsp;·&nbsp; abeja.net</span>
+    </div>
+    <div class="vibe">Your "moment" stop · walk the grounds, soak it in, slow down</div>
+    <div class="details">
+      The estate tasting room is reservation-only. Beautiful farmstead property with gardens and restored historic buildings. This is the experiential centerpiece of Saturday — don't rush it. Plan ~90 min including a walk around the grounds.
+    </div>
+    <span class="tag reservation">Reservation required</span>
+  </div>
+
+  <div class="drive">~10 min drive to downtown</div>
+
+  <!-- Stop 6 -->
+  <div class="stop">
+    <div class="stop-number">6</div>
+    <h3>Downtown Walla Walla — Pick 1–2</h3>
+    <div class="time-badge">3:00 – 5:30 PM flexible</div>
+    <div class="meta">
+      <span>All within a few blocks of each other downtown</span>
+    </div>
+    <div class="vibe">Social energy · vibe hop based on how you're feeling</div>
+    <div class="details">
+      <strong>DAMA Wines</strong> — 123 E Main St · Sat 12–6pm · fun, artsy, social<br>
+      <strong>Kontos Cellars</strong> — 10 N 2nd Ave · Sat 11am–6:30pm · patio + easy drinking<br>
+      <strong>Echolands Winery</strong> — 3281 Mill Creek Rd · Sat 11am–7pm · sleek + modern (note: estate location, not downtown)
+    </div>
+    <span class="tag walkin">Walk-in friendly</span>
+  </div>
+
+  <div class="drive">~5 min walk downtown</div>
+
+  <!-- Saturday dinner -->
+  <div class="dinner">
+    <h3>🍽️ Dinner — Hattaway's on Alder</h3>
+    <div class="time-badge">6:30 PM reservation</div>
+    <div class="meta">
+      <span>📍 125 W Alder St, Walla Walla, WA 99362</span>
+      <span>📞 509-525-4433 &nbsp;·&nbsp; Book on Resy</span>
+    </div>
+    <div class="details">
+      Southern-inspired fine dining with house-cured meats, local seafood, and a great local wine list. Sat hours 4–9pm. Intimate downtown spot — walkable from your last tasting. Pairs perfectly with a day of big reds: think smoked meats + rich Walla Walla Syrahs.
+    </div>
+  </div>
+
+  <!-- ============ ACTION ITEMS ============ -->
+  <div class="actions">
+    <h2>Reservations To Book Now</h2>
+    <ol>
+      <li><strong>Caprio Cellars — Fri 11:00 AM</strong><br>Book via capriocellars.com or Tock. Non-negotiable, fills fast.</li>
+      <li><strong>Tranche — Fri ~1:00 PM</strong><br>Call 509-526-3500 or book online. Recommended but not required.</li>
+      <li><strong>àMaurice — Fri ~2:30 PM</strong><br>Call 509-522-5444 or email info@amaurice.com. Walk-ins OK but safer to call.</li>
+      <li><strong>The Kitchen at Abeja — Fri 5:30 PM dinner</strong><br>Book on Tock (exploretock.com/the-kitchen-at-abeja). Book ASAP — limited seatings.</li>
+      <li><strong>Rotie Cellars Rocks Estate — Sat 11:00 AM</strong><br>Call 509-301-9074. Appointment only.</li>
+      <li><strong>Abeja Estate Tasting — Sat 1:00 PM</strong><br>Call 509-526-7400 or email wine@abeja.net. Reservation required.</li>
+      <li><strong>Hattaway's on Alder — Sat 6:30 PM dinner</strong><br>Book on Resy (resy.com). Downtown, walkable from tastings.</li>
+    </ol>
+    <div class="note">
+      Priority order: Caprio + The Kitchen at Abeja + Abeja estate tasting are the hardest to get. Book those first. Hattaway's and Rotie next. Tranche and àMaurice are more flexible.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
