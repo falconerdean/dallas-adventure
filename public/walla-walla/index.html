@@ -234,6 +234,141 @@
   }
 
   .route-summary strong { color: #3b1f2b; }
+
+  /* Section divider */
+  .section-divider {
+    text-align: center;
+    margin: 56px 0 8px;
+    position: relative;
+  }
+
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #d4ccc6;
+  }
+
+  .section-divider span {
+    background: #f8f5f0;
+    padding: 0 20px;
+    position: relative;
+    font-size: 0.85rem;
+    color: #9a918a;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Restaurant section header */
+  .resto-section-header {
+    margin-top: 20px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .resto-section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #3b1f2b;
+    margin-bottom: 6px;
+  }
+
+  .resto-section-header p {
+    font-size: 0.92rem;
+    color: #7a7570;
+  }
+
+  /* Restaurant card */
+  .resto-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .resto-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    height: 200px;
+  }
+
+  .resto-photos img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .resto-photos.single-photo {
+    grid-template-columns: 1fr;
+  }
+
+  .resto-body {
+    padding: 24px 28px 20px;
+  }
+
+  .resto-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: #3b1f2b;
+    margin-bottom: 2px;
+  }
+
+  .resto-body h3 a {
+    color: #3b1f2b;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .resto-body h3 a:hover {
+    border-bottom-color: #7a3e52;
+  }
+
+  .resto-type {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #7a3e52;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+
+  .resto-body .meta {
+    font-size: 0.85rem;
+    color: #6b6560;
+    margin-bottom: 12px;
+  }
+
+  .resto-body .meta span { display: block; margin-bottom: 3px; }
+
+  .resto-body .description {
+    font-size: 0.88rem;
+    color: #5a5550;
+    margin-bottom: 10px;
+  }
+
+  .resto-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .resto-tags .tag {
+    margin: 0;
+  }
+
+  .tag.breakfast { background: #fef3c7; color: #92400e; }
+  .tag.lunch { background: #e0f2fe; color: #0369a1; }
+  .tag.dinner-tag { background: #f3e8ed; color: #7a3e52; }
+  .tag.casual { background: #e8f5e8; color: #2d7a2d; }
+  .tag.truck { background: #fde8e8; color: #b91c1c; }
 </style>
 </head>
 <body>
@@ -398,6 +533,131 @@
     </div>
     <div class="details">
       Southern-inspired fine dining with house-cured meats, local seafood, and a great local wine list. Sat hours 4–9pm. Intimate downtown spot — walkable from your last tasting. Pairs perfectly with a day of big reds: think smoked meats + rich Walla Walla Syrahs.
+    </div>
+  </div>
+
+  <!-- ============ RESTAURANTS ============ -->
+  <div class="section-divider"><span>Beyond the Wineries</span></div>
+
+  <div class="resto-section-header">
+    <h2>Where to Eat</h2>
+    <p>Local picks for breakfast, lunch, and dinner — no chains, all highly rated</p>
+  </div>
+
+  <!-- Restaurant 1: Bacon & Eggs -->
+  <div class="resto-card">
+    <div class="resto-photos">
+      <img src="https://images.squarespace-cdn.com/content/v1/5a2b0184ccc5c5080516c921/1521042722516-Z9ANSE02YYMDDL46IBWU/DSCF9716.jpg" alt="Bacon & Eggs brunch plate">
+      <img src="https://images.squarespace-cdn.com/content/v1/5a2b0184ccc5c5080516c921/1521042720283-E56NP0DBY6DFLJXZLVDY/DSCF9600.jpg" alt="Bacon & Eggs interior">
+    </div>
+    <div class="resto-body">
+      <h3><a href="https://www.google.com/maps/place/Bacon+%26+Eggs/@46.0647,-118.335,17z/" target="_blank">Bacon & Eggs</a></h3>
+      <div class="resto-type">Breakfast · Brunch</div>
+      <div class="meta">
+        <span>📍 201 E Main St, Walla Walla, WA 99362</span>
+        <span>📞 509-876-4553 &nbsp;·&nbsp; Thu–Mon 8am–2pm</span>
+      </div>
+      <div class="description">
+        The go-to breakfast spot downtown. Chorizo scramble, huevos rancheros, buttermilk pancakes, shrimp & grits, house-baked pastries with Stumptown coffee. Locally sourced, creative flavors. Expect a weekend line by 8am — call ahead to reserve. Perfect Saturday morning fuel before Rotie.
+      </div>
+      <div class="resto-tags">
+        <span class="tag breakfast">Breakfast</span>
+        <span class="tag lunch">Lunch</span>
+        <span class="tag casual">Local favorite</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Restaurant 2: Passatempo Taverna -->
+  <div class="resto-card">
+    <div class="resto-photos">
+      <img src="https://images.squarespace-cdn.com/content/v1/56fb05894d088ebedd8fcaef/1654897332875-OD2U862NOECDZNQHCOEE/Passatempo_2020_BOH-Pizza_Lindbloom_850_7099.jpg" alt="Passatempo pizza">
+      <img src="https://images.squarespace-cdn.com/content/v1/56fb05894d088ebedd8fcaef/1654897407252-OUE2T81LSROCS7GHGK7E/22.05.15_Passatempo_Prep-BOH-pasta2_benlindbloom_850_0951.jpg" alt="Passatempo handmade pasta">
+    </div>
+    <div class="resto-body">
+      <h3><a href="https://www.google.com/maps/place/Passatempo+Taverna/@46.0652,-118.3457,17z/" target="_blank">Passatempo Taverna</a></h3>
+      <div class="resto-type">Italian · Handmade Pasta · Pizza</div>
+      <div class="meta">
+        <span>📍 215 W Main St, Walla Walla, WA 99362</span>
+        <span>📞 509-876-8822 &nbsp;·&nbsp; Mon, Thu–Sun 4–9:30pm &nbsp;·&nbsp; <a href="https://www.opentable.com/r/passatempo-taverna-walla-walla" target="_blank" style="color:#7a3e52;">Book on OpenTable</a></span>
+      </div>
+      <div class="description">
+        Handmade pasta daily in a century-old building that started as a 1920s cigar shop. Wood-fired pizzas, tomahawk steak, meatballs, burrata bruschetta. Strong cocktail program and impressive wine list. 428 Yelp reviews. Great alternate Friday dinner if The Kitchen at Abeja is booked.
+      </div>
+      <div class="resto-tags">
+        <span class="tag dinner-tag">Dinner</span>
+        <span class="tag casual">Alt Friday dinner</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Restaurant 3: Saffron Mediterranean Kitchen -->
+  <div class="resto-card">
+    <div class="resto-photos">
+      <img src="https://wallawalla.org/wp-content/uploads/2015/06/45374108_2138879992797244_3808959688821702656_n.jpg" alt="Saffron Mediterranean Kitchen dish">
+      <img src="https://wallawalla.org/wp-content/uploads/2015/06/o-98.jpg" alt="Saffron Mediterranean Kitchen interior">
+    </div>
+    <div class="resto-body">
+      <h3><a href="https://www.google.com/maps/place/Saffron+Mediterranean+Kitchen/@46.0649038,-118.3466578,17z/" target="_blank">Saffron Mediterranean Kitchen</a></h3>
+      <div class="resto-type">Mediterranean · Small Plates · Wood-Fired</div>
+      <div class="meta">
+        <span>📍 330 W Main St, Walla Walla, WA 99362</span>
+        <span>📞 509-525-2112 &nbsp;·&nbsp; Tue–Thu 4:30–9pm, Fri–Sat 2–9pm &nbsp;·&nbsp; <a href="https://www.exploretock.com/saffron" target="_blank" style="color:#7a3e52;">Book on Tock</a></span>
+      </div>
+      <div class="description">
+        Local institution since 2007 in the historic Bachtold building. Southern European and North African flavors with local ingredients — flatbreads, octopus, lamb, chicken tagine, wood-fired entrees. Small and intimate (parties of 6 or less). Dog-friendly patio. 614 Yelp reviews. Strong alt dinner option for either night.
+      </div>
+      <div class="resto-tags">
+        <span class="tag dinner-tag">Dinner</span>
+        <span class="tag casual">Alt dinner either night</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Restaurant 4: Brasserie Four -->
+  <div class="resto-card">
+    <div class="resto-photos single-photo">
+      <img src="https://lirp.cdn-website.com/98429425/dms3rep/multi/opt/Brasserie-22-1920w.jpg" alt="Brasserie Four restaurant">
+    </div>
+    <div class="resto-body">
+      <h3><a href="https://www.google.com/maps/place/Brasserie+Four/@46.065,-118.342,17z/" target="_blank">Brasserie Four</a></h3>
+      <div class="resto-type">French Brasserie · Wine Bar</div>
+      <div class="meta">
+        <span>📍 4 E Main St, Walla Walla, WA 99362</span>
+        <span>📞 509-529-2011 &nbsp;·&nbsp; Tue–Thu 4–9pm, Fri–Sat 11:30am–9pm &nbsp;·&nbsp; <a href="https://www.opentable.com/restaurant/profile/205333" target="_blank" style="color:#7a3e52;">Book on OpenTable</a></span>
+      </div>
+      <div class="description">
+        Classic French brasserie on Main Street. Upscale French fare with rotating art on the walls, high-end cocktails, and both French and Walla Walla wines. 96% recommend on 726 reviews. Open for lunch Fri–Sat if you skip the Caprio food pairing. Great casual-fancy dinner backup too.
+      </div>
+      <div class="resto-tags">
+        <span class="tag lunch">Lunch (Fri–Sat)</span>
+        <span class="tag dinner-tag">Dinner</span>
+        <span class="tag casual">Walkable downtown</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Restaurant 5: WTF Eat It -->
+  <div class="resto-card">
+    <div class="resto-photos">
+      <img src="https://wallawalla.org/wp-content/uploads/2021/05/182103752_322838646121082_3407157789638514004_n.jpg" alt="WTF BBQ sandwich">
+      <img src="https://wallawalla.org/wp-content/uploads/2021/05/179373710_318472426557704_8754005783279266386_n.jpg" alt="WTF loaded fries">
+    </div>
+    <div class="resto-body">
+      <h3><a href="https://www.google.com/maps/search/Where+There's+Food+Eat+It+Walla+Walla/" target="_blank">WTF Eat It (Where There's Food)</a></h3>
+      <div class="resto-type">Food Truck · Smash Burgers · BBQ</div>
+      <div class="meta">
+        <span>📍 Location varies — often at Burwood Brewing near the airport</span>
+        <span>📞 541-921-1724 &nbsp;·&nbsp; Check <a href="https://www.facebook.com/WTFEATIT/" target="_blank" style="color:#7a3e52;">Facebook</a> / <a href="https://wtfeatit.com/" target="_blank" style="color:#7a3e52;">wtfeatit.com</a> for schedule</span>
+      </div>
+      <div class="description">
+        Locals call it the best burger in town. Double-smash patties with "Nay Sauce," plus pulled pork, brisket, Carolina BBQ sandwiches, and creative sides. Chef Nathan Carlson won the 2024 Union-Bulletin Readers' Choice for Best Chef. Usually parked Wed/Fri/Sat at Burwood Brewing. Check socials before heading over.
+      </div>
+      <div class="resto-tags">
+        <span class="tag truck">Food truck</span>
+        <span class="tag lunch">Lunch</span>
+        <span class="tag casual">Best burger in town</span>
+      </div>
     </div>
   </div>
 
