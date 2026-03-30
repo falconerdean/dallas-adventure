@@ -331,53 +331,11 @@
     position: relative;
   }
 
-  .road-animation {
-    position: relative;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin-bottom: 6px;
-  }
-
-  .road-svg {
-    width: 220px;
-    height: 48px;
-  }
-
-  .road-path {
-    stroke: #d4ccc6;
-    stroke-width: 2;
-    fill: none;
-    stroke-dasharray: 8 6;
-  }
-
-  .road-dashes {
-    stroke: #7a3e52;
-    stroke-width: 2;
-    fill: none;
-    stroke-dasharray: 8 6;
-    stroke-dashoffset: 0;
-    animation: roadDash 1.5s linear infinite;
-  }
-
-  @keyframes roadDash {
-    to { stroke-dashoffset: -28; }
-  }
-
-  .road-car {
-    position: absolute;
-    font-size: 1.3rem;
-    animation: carDrive 3s ease-in-out infinite;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
-  }
-
-  @keyframes carDrive {
-    0% { left: 15%; opacity: 0; }
-    15% { opacity: 1; }
-    85% { opacity: 1; }
-    100% { left: 75%; opacity: 0; }
+  .drive-line {
+    width: 2px;
+    height: 32px;
+    background: linear-gradient(to bottom, transparent, #d4ccc6, transparent);
+    margin: 0 auto 6px;
   }
 
   .drive-text {
@@ -713,7 +671,7 @@
       <h3><a href="https://www.google.com/maps/place/Caprio+Cellars/@46.0288,-118.3765,15z/" target="_blank">Caprio Cellars</a></h3>
       <div class="badge-row">
         <span class="time-badge">11:00 AM</span>
-        <span class="booking-status status-pending">&#9899; Held on Tock &mdash; enter CVC to confirm</span>
+        <span class="booking-status status-confirmed">&#9989; Confirmed &mdash; TOCK-R-SAIO6LKG</span>
       </div>
       <div class="meta">
         <span>&#128205; <a href="https://www.google.com/maps/place/Caprio+Cellars/@46.0288,-118.3765,15z/" target="_blank">1603 Whitely Rd, Walla Walla, WA 99362</a></span>
@@ -729,10 +687,7 @@
   </div>
 
   <div class="drive reveal">
-    <div class="road-animation">
-      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
-      <span class="road-car">&#128663;</span>
-    </div>
+    <div class="drive-line"></div>
     <div class="drive-text">~10 min via Mill Creek Rd</div>
   </div>
 
@@ -759,10 +714,7 @@
   </div>
 
   <div class="drive reveal">
-    <div class="road-animation">
-      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
-      <span class="road-car">&#128663;</span>
-    </div>
+    <div class="drive-line"></div>
     <div class="drive-text">~12 min east toward Mill Creek</div>
   </div>
 
@@ -789,10 +741,7 @@
   </div>
 
   <div class="drive reveal">
-    <div class="road-animation">
-      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
-      <span class="road-car">&#128663;</span>
-    </div>
+    <div class="drive-line"></div>
     <div class="drive-text">~15 min to downtown</div>
   </div>
 
@@ -849,10 +798,7 @@
   </div>
 
   <div class="drive reveal">
-    <div class="road-animation">
-      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
-      <span class="road-car">&#128663;</span>
-    </div>
+    <div class="drive-line"></div>
     <div class="drive-text">~20 min north to Mill Creek Rd</div>
   </div>
 
@@ -880,10 +826,7 @@
   </div>
 
   <div class="drive reveal">
-    <div class="road-animation">
-      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
-      <span class="road-car">&#128663;</span>
-    </div>
+    <div class="drive-line"></div>
     <div class="drive-text">~10 min to downtown</div>
   </div>
 
@@ -911,10 +854,7 @@
   </div>
 
   <div class="drive reveal">
-    <div class="road-animation">
-      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
-      <span class="road-car">&#128694;</span>
-    </div>
+    <div class="drive-line"></div>
     <div class="drive-text">~5 min walk downtown</div>
   </div>
 
@@ -980,7 +920,7 @@
       <div class="resto-type">Italian &middot; Handmade Pasta &middot; Pizza</div>
       <div class="meta">
         <span>&#128205; <a href="https://www.google.com/maps/place/Passatempo+Taverna/@46.0652,-118.3457,17z/" target="_blank">215 W Main St, Walla Walla, WA 99362</a></span>
-        <span>&#128222; 509-876-8822 &nbsp;&middot;&nbsp; Mon, Thu&ndash;Sun 4&ndash;9:30pm &nbsp;&middot;&nbsp; <a href="https://www.opentable.com/r/passatempo-taverna-walla-walla" target="_blank">Book on OpenTable</a></span>
+        <span>&#128222; 509-876-8822 &nbsp;&middot;&nbsp; Mon, Thu&ndash;Sun 4&ndash;9:30pm &nbsp;&middot;&nbsp; Call to reserve</span>
       </div>
       <div class="description">
         Handmade pasta daily in a century-old building that started as a 1920s cigar shop. Wood-fired pizzas, tomahawk steak, meatballs, burrata bruschetta. Strong cocktail program. <strong>Our Friday night dinner pick.</strong>
@@ -1096,11 +1036,11 @@
     <h2>Booking Status</h2>
 
     <div class="booking-item">
-      <div class="booking-dot dot-yellow"></div>
+      <div class="booking-dot dot-green"></div>
       <div class="booking-info">
         <strong>Caprio Cellars &mdash; Fri 11:00 AM (VIP Lunch)</strong>
-        Held on Tock &mdash; needs CVC to confirm. Card ending 1004.
-        <div class="booking-note">Check your Tock tab and enter CVC before the hold expires.</div>
+        &#9989; Confirmed &mdash; TOCK-R-SAIO6LKG. 5 guests, Amex ending 4975.
+        <div class="booking-note">Cancel by Wed April 30 to avoid $125/person no-show fee.</div>
       </div>
     </div>
 
