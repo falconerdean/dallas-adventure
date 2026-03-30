@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local SpecStory conversation history can contain sensitive data
+.specstory/history/
