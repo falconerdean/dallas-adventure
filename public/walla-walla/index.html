@@ -321,31 +321,70 @@
   .tag.walkin { background: #d1fae5; color: #065f46; }
   .tag.food { background: #fef3e2; color: #b45309; }
 
-  /* ===== DRIVE CONNECTOR ===== */
+  /* ===== DRIVE CONNECTOR (animated road) ===== */
   .drive {
     text-align: center;
-    padding: 14px 0;
+    padding: 20px 0;
     font-size: 0.82rem;
     color: #9a918a;
     font-weight: 500;
     position: relative;
   }
 
-  .drive-line {
+  .road-animation {
+    position: relative;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    overflow: hidden;
+    margin-bottom: 6px;
   }
 
-  .drive-line::before, .drive-line::after {
-    content: '';
-    height: 1px;
-    width: 40px;
-    background: #d4ccc6;
+  .road-svg {
+    width: 220px;
+    height: 48px;
   }
 
-  .drive-icon { font-size: 1.1rem; }
+  .road-path {
+    stroke: #d4ccc6;
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 8 6;
+  }
+
+  .road-dashes {
+    stroke: #7a3e52;
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 8 6;
+    stroke-dashoffset: 0;
+    animation: roadDash 1.5s linear infinite;
+  }
+
+  @keyframes roadDash {
+    to { stroke-dashoffset: -28; }
+  }
+
+  .road-car {
+    position: absolute;
+    font-size: 1.3rem;
+    animation: carDrive 3s ease-in-out infinite;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+  }
+
+  @keyframes carDrive {
+    0% { left: 15%; opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { left: 75%; opacity: 0; }
+  }
+
+  .drive-text {
+    font-size: 0.8rem;
+    color: #9a918a;
+    letter-spacing: 0.02em;
+  }
 
   /* ===== DINNER CARD ===== */
   .dinner {
@@ -460,13 +499,15 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2px;
-    height: 200px;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
   }
 
   .resto-photos img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
   .resto-photos.single-photo { grid-template-columns: 1fr; }
@@ -527,6 +568,44 @@
   .tag.dinner-tag { background: #f3e8ed; color: #7a3e52; }
   .tag.casual { background: #d1fae5; color: #065f46; }
   .tag.truck { background: #fde8e8; color: #b91c1c; }
+
+  /* ===== ALERT / RED FLAG CARDS ===== */
+  .alert-section {
+    margin: 48px 0 8px;
+  }
+
+  .alert-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #b91c1c;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .alert-card {
+    background: #fff5f5;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    border-left: 4px solid #ef4444;
+    font-size: 0.88rem;
+    color: #4a4540;
+  }
+
+  .alert-card strong {
+    color: #b91c1c;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.92rem;
+  }
+
+  .alert-card .alert-detail {
+    color: #6b6560;
+    font-size: 0.84rem;
+    margin-top: 4px;
+  }
 
   /* ===== BOOKING SUMMARY ===== */
   .booking-summary {
@@ -592,7 +671,9 @@
     .stop-photo { height: 180px; }
     .dinner-photo { height: 160px; }
     .stop-content, .dinner-content, .booking-summary { padding: 22px; }
-    .resto-photos { height: 160px; }
+    .resto-photos { aspect-ratio: 16 / 8; }
+    .resto-body { padding: 20px; }
+    .resto-body h3 { font-size: 1.15rem; }
   }
 </style>
 </head>
@@ -648,7 +729,11 @@
   </div>
 
   <div class="drive reveal">
-    <div class="drive-line"><span class="drive-icon">&#128663;</span> ~10 min via Mill Creek Rd</div>
+    <div class="road-animation">
+      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
+      <span class="road-car">&#128663;</span>
+    </div>
+    <div class="drive-text">~10 min via Mill Creek Rd</div>
   </div>
 
   <!-- Stop 2: Tranche -->
@@ -674,7 +759,11 @@
   </div>
 
   <div class="drive reveal">
-    <div class="drive-line"><span class="drive-icon">&#128663;</span> ~12 min east toward Mill Creek</div>
+    <div class="road-animation">
+      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
+      <span class="road-car">&#128663;</span>
+    </div>
+    <div class="drive-text">~12 min east toward Mill Creek</div>
   </div>
 
   <!-- Stop 3: àMaurice -->
@@ -700,7 +789,11 @@
   </div>
 
   <div class="drive reveal">
-    <div class="drive-line"><span class="drive-icon">&#128663;</span> ~15 min to downtown</div>
+    <div class="road-animation">
+      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
+      <span class="road-car">&#128663;</span>
+    </div>
+    <div class="drive-text">~15 min to downtown</div>
   </div>
 
   <!-- Friday Dinner: Passatempo Taverna -->
@@ -710,11 +803,11 @@
       <h3>&#127860; Dinner &mdash; <a href="https://www.google.com/maps/place/Passatempo+Taverna/@46.0652,-118.3457,17z/" target="_blank">Passatempo Taverna</a></h3>
       <div class="badge-row">
         <span class="time-badge">~5:30 PM</span>
-        <span class="booking-status">&#9899; Booking on OpenTable &mdash; in progress</span>
+        <span class="booking-status status-action">&#9899; Call 509-876-8822 to reserve (not on OpenTable)</span>
       </div>
       <div class="meta">
         <span>&#128205; <a href="https://www.google.com/maps/place/Passatempo+Taverna/@46.0652,-118.3457,17z/" target="_blank">215 W Main St, Walla Walla, WA 99362</a></span>
-        <span>&#128222; 509-876-8822 &nbsp;&middot;&nbsp; <a href="https://www.opentable.com/r/passatempo-taverna-walla-walla" target="_blank">Book on OpenTable</a></span>
+        <span>&#128222; 509-876-8822 &nbsp;&middot;&nbsp; Call to reserve (not on OpenTable)</span>
       </div>
       <div class="details">
         Handmade pasta daily in a century-old building that started as a 1920s cigar shop. Wood-fired pizzas, tomahawk steak, meatballs, burrata bruschetta. Strong cocktail program and impressive wine list. The perfect wind-down after a day of wine.
@@ -756,7 +849,11 @@
   </div>
 
   <div class="drive reveal">
-    <div class="drive-line"><span class="drive-icon">&#128663;</span> ~20 min north to Mill Creek Rd</div>
+    <div class="road-animation">
+      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
+      <span class="road-car">&#128663;</span>
+    </div>
+    <div class="drive-text">~20 min north to Mill Creek Rd</div>
   </div>
 
   <!-- Stop 5: Abeja -->
@@ -767,7 +864,7 @@
       <h3><a href="https://www.google.com/maps/place/Abeja/@46.0550,-118.2780,15z/" target="_blank">Abeja Winery &mdash; Spring Release Weekend</a></h3>
       <div class="badge-row">
         <span class="time-badge">1:30 PM</span>
-        <span class="booking-status status-pending">&#9899; Held on Tock &mdash; enter CVC to confirm ($304.48)</span>
+        <span class="booking-status status-confirmed">&#9989; Confirmed &mdash; TOCK-R-ZC2N5RXM ($304.48)</span>
       </div>
       <div class="meta">
         <span>&#128205; <a href="https://www.google.com/maps/place/Abeja/@46.0550,-118.2780,15z/" target="_blank">2014 Mill Creek Rd, Walla Walla, WA 99362</a></span>
@@ -783,7 +880,11 @@
   </div>
 
   <div class="drive reveal">
-    <div class="drive-line"><span class="drive-icon">&#128663;</span> ~10 min to downtown</div>
+    <div class="road-animation">
+      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
+      <span class="road-car">&#128663;</span>
+    </div>
+    <div class="drive-text">~10 min to downtown</div>
   </div>
 
   <!-- Stop 6: Downtown -->
@@ -810,7 +911,11 @@
   </div>
 
   <div class="drive reveal">
-    <div class="drive-line"><span class="drive-icon">&#128694;</span> ~5 min walk downtown</div>
+    <div class="road-animation">
+      <svg class="road-svg" viewBox="0 0 220 48"><line class="road-path" x1="0" y1="24" x2="220" y2="24"/><line class="road-dashes" x1="0" y1="24" x2="220" y2="24"/></svg>
+      <span class="road-car">&#128694;</span>
+    </div>
+    <div class="drive-text">~5 min walk downtown</div>
   </div>
 
   <!-- Saturday Dinner: Hattaway's -->
@@ -957,6 +1062,35 @@
     </div>
   </div>
 
+  <!-- ============ CANCELLATION ALERTS ============ -->
+  <div class="alert-section reveal">
+    <h2>&#9888;&#65039; Heads Up &mdash; Cancellation Policies</h2>
+
+    <div class="alert-card">
+      <strong>Caprio Cellars &mdash; $125/person no-show fee</strong>
+      If you cancel less than 24 hours before or don&rsquo;t show up, you&rsquo;ll be charged $125 per person ($625 total for our group). Cancel at least 1 day ahead to avoid the charge.
+      <div class="alert-detail">&#128197; Deadline: Cancel by Wed April 30 at 11:00 AM.</div>
+    </div>
+
+    <div class="alert-card">
+      <strong>Abeja Winery &mdash; No cancellation penalty</strong>
+      Abeja doesn&rsquo;t charge for cancellations. You can cancel anytime without a fee.
+      <div class="alert-detail">&#9989; Flexible &mdash; no action needed unless plans change.</div>
+    </div>
+
+    <div class="alert-card">
+      <strong>Phone reservations (Tranche, &agrave;Maurice, Rotie, Passatempo)</strong>
+      These are standard call-ahead reservations. Cancel as a courtesy if plans change &mdash; just call the same number you booked with.
+      <div class="alert-detail">&#128222; No formal penalty expected, but always call if you can&rsquo;t make it.</div>
+    </div>
+
+    <div class="alert-card">
+      <strong>Hattaway&rsquo;s on Alder &mdash; Resy policy TBD</strong>
+      Resy restaurants often have a late-cancel or no-show fee (typically a credit card hold). Confirm the policy when booking.
+      <div class="alert-detail">&#128270; Check Resy confirmation email for cancellation terms.</div>
+    </div>
+  </div>
+
   <!-- ============ BOOKING SUMMARY ============ -->
   <div class="booking-summary reveal">
     <h2>Booking Status</h2>
@@ -971,11 +1105,11 @@
     </div>
 
     <div class="booking-item">
-      <div class="booking-dot dot-yellow"></div>
+      <div class="booking-dot dot-green"></div>
       <div class="booking-info">
         <strong>Abeja Winery &mdash; Sat 1:30 PM (Spring Release Weekend, $304.48)</strong>
-        Held on Tock &mdash; needs CVC to confirm. Card ending 1004.
-        <div class="booking-note">5 guests &times; $55/person + taxes. Enter CVC to lock it in.</div>
+        &#9989; Confirmed &mdash; TOCK-R-ZC2N5RXM. 5 guests &times; $55/person + taxes.
+        <div class="booking-note">No penalty for cancellation.</div>
       </div>
     </div>
 
@@ -999,8 +1133,7 @@
       <div class="booking-dot dot-red"></div>
       <div class="booking-info">
         <strong>Passatempo Taverna &mdash; Fri ~5:30 PM dinner</strong>
-        Booking on OpenTable &mdash; in progress.
-        <div class="booking-note"><a href="https://www.opentable.com/r/passatempo-taverna-walla-walla" target="_blank" style="color:#7a3e52;">Book on OpenTable</a></div>
+        Call 509-876-8822 to reserve. Not available on OpenTable.
       </div>
     </div>
 
