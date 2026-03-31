@@ -628,10 +628,21 @@
     .hero-stat .num { font-size: 1.8rem; }
     .stop-photo { height: 180px; }
     .dinner-photo { height: 160px; }
-    .stop-content, .dinner-content, .booking-summary { padding: 22px; }
+    .stop-content { padding: 28px 20px 22px; }
+    .dinner-content { padding: 24px 20px; }
+    .booking-summary { padding: 24px 18px; }
+    .booking-info { font-size: 0.84rem; }
+    .alert-card { padding: 18px 16px; font-size: 0.84rem; }
+    .route-summary { padding: 18px 18px; font-size: 0.84rem; }
     .resto-photos { aspect-ratio: 16 / 8; }
-    .resto-body { padding: 20px; }
+    .resto-body { padding: 20px 18px; }
     .resto-body h3 { font-size: 1.15rem; }
+    .badge-row { gap: 6px; }
+    .time-badge, .booking-status { font-size: 0.74rem; padding: 3px 10px; }
+    .stop .meta, .dinner .meta { font-size: 0.82rem; }
+    .stop .details, .dinner .details { font-size: 0.84rem; }
+    .stop .vibe { font-size: 0.86rem; padding: 8px 12px; }
+    .tag { font-size: 0.7rem; padding: 2px 9px; }
   }
 </style>
 </head>
@@ -702,11 +713,11 @@
       </div>
       <div class="meta">
         <span>&#128205; <a href="https://www.google.com/maps/place/10+N+7th+Ave,+Walla+Walla,+WA+99362/" target="_blank">The Drayman House, 10 N 7th Ave, Walla Walla, WA 99362</a></span>
-        <span>&#128222; 509-629-9643 &nbsp;&middot;&nbsp; <a href="mailto:info@smakwines.com">info@smakwines.com</a></span>
+        <span>&#128222; 509-629-9643 &nbsp;&middot;&nbsp; <a href="mailto:info@smakwines.com">info@smakwines.com</a> &nbsp;&middot;&nbsp; <a href="https://smakwines.com" target="_blank">smakwines.com</a></span>
       </div>
-      <div class="vibe">Private members club &middot; text for entry &middot; 21+ only, no pets</div>
+      <div class="vibe">Women-owned ros&eacute; house &middot; seasonal wines &middot; private members club</div>
       <div class="details">
-        Private wine tasting at The Drayman House (21+ private members club). $20/person tasting fee, refundable with a 2-bottle purchase. Allow ~75 min. <strong>Text 509-629-9643 for entry.</strong> Parking at 500 W Main St. Sit inside or out. Booked by Stefanie.
+        SMAK is Walla Walla&rsquo;s only winery fully committed to exclusive ros&eacute; production, founded by Fiona Mak. Each wine reflects a different season &mdash; expect a curated range of ros&eacute;s from different varieties and winemaking methods. Tasting at The Drayman House, a 21+ private members club. $20/person, refundable with a 2-bottle purchase. Allow ~75 min. Sit inside or out. <strong>Text 509-629-9643 for entry.</strong> Parking at 500 W Main St. Booked by Stefanie.
       </div>
       <span class="tag reservation">Reservation confirmed</span>
     </div>
@@ -714,7 +725,39 @@
 
   <div class="drive reveal">
     <div class="drive-line"></div>
-    <div class="drive-text">Walk around downtown &middot; Dinner at the house</div>
+    <div class="drive-text">Explore downtown on foot</div>
+  </div>
+
+  <!-- Friday Evening: Downtown + Dinner at the House -->
+  <div class="stop reveal">
+    <img class="stop-photo" src="https://wallawalla.org/wp-content/uploads/2021/05/b9bdf2403ed21b1ae8b4fa9b91831cf197d46f0720cc9e6495f4c446f6e0cb2d-900x600.jpg" alt="Downtown Walla Walla" onerror="this.style.display='none'">
+    <div class="stop-content">
+      <div class="stop-number">&#127751;</div>
+      <h3><a href="https://www.google.com/maps/place/Downtown+Walla+Walla/" target="_blank">Friday Evening &mdash; Downtown + Dinner at the House</a></h3>
+      <div class="badge-row">
+        <span class="time-badge">~4:00 PM onward</span>
+        <span class="booking-status status-confirmed">&#9899; No reservations needed</span>
+      </div>
+      <div class="vibe">Walk around downtown &middot; pop into tasting rooms &middot; shop &middot; then order in dinner at the house</div>
+      <div class="details">
+        <strong>Walk-in tasting rooms downtown (no reservation needed):</strong><br>
+        <a href="https://www.google.com/maps/search/DAMA+Wines+Walla+Walla/" target="_blank">DAMA Wines</a> &mdash; 123 E Main St &middot; Fun, artsy, social &middot; Sat 12&ndash;6pm<br>
+        <a href="https://www.google.com/maps/search/Kontos+Cellars+Walla+Walla/" target="_blank">Kontos Cellars</a> &mdash; 10 N 2nd Ave &middot; Patio, easy drinking<br>
+        <a href="https://www.google.com/maps/search/Bartholomew+Winery+Walla+Walla/" target="_blank">Bartholomew Winery</a> &mdash; 12 N 2nd Ave &middot; Thu&ndash;Sun 12&ndash;5pm<br>
+        <a href="https://www.google.com/maps/search/Capital+Call+Vintners+Walla+Walla/" target="_blank">Capital Call Vintners</a> &mdash; 11 N 2nd Ave &middot; Daily 12&ndash;7pm<br>
+        <a href="https://www.google.com/maps/search/Amavi+Cellars+Walla+Walla/" target="_blank">Amavi Cellars</a> &mdash; Walk-ins always welcome<br>
+        <a href="https://www.google.com/maps/search/The+Walls+Vineyards+Walla+Walla/" target="_blank">The Walls Vineyards</a> &mdash; Walk-ins accommodated
+        <br><br>
+        <strong>Order-in dinner at the house:</strong><br>
+        <a href="https://www.google.com/maps/place/Passatempo+Taverna/@46.0652,-118.3457,17z/" target="_blank">Passatempo Taverna</a> &mdash; 509-876-8822 &middot; Handmade pasta, wood-fired pizza. Call for takeout.<br>
+        <a href="https://www.google.com/maps/place/Saffron+Mediterranean+Kitchen/@46.0649038,-118.3466578,17z/" target="_blank">Saffron Mediterranean Kitchen</a> &mdash; 509-525-2112 &middot; Flatbreads, lamb, tagine. Fri 2&ndash;9pm.<br>
+        <a href="https://www.google.com/maps/search/Fiasco+Pizza+Walla+Walla/" target="_blank">Fiasco Pizza</a> &mdash; Top-rated local pizza. Great for easy group ordering.<br>
+        <a href="https://www.google.com/maps/search/Sweet+Basil+Pizzeria+Walla+Walla/" target="_blank">Sweet Basil Pizzeria</a> &mdash; Another strong local pizza option.<br>
+        <a href="https://www.google.com/maps/search/Brasserie+Four+Walla+Walla/" target="_blank">Brasserie Four</a> &mdash; 509-529-2011 &middot; French brasserie takeout. Fri 11:30am&ndash;9pm.
+      </div>
+      <span class="tag walkin">Walk-in tasting</span>
+      <span class="tag casual">Order-in dinner</span>
+    </div>
   </div>
 
   <!-- ============ SATURDAY ============ -->
@@ -741,11 +784,12 @@
         <span>&#128205; <a href="https://www.google.com/maps/place/1704+J+B+George+Rd,+Walla+Walla,+WA+99362/" target="_blank">1704 J B George Rd, Walla Walla, WA 99362</a></span>
         <span>&#128222; 509-525-6502 &nbsp;&middot;&nbsp; <a href="mailto:tastingroom@pepperbridge.com">tastingroom@pepperbridge.com</a></span>
       </div>
-      <div class="vibe">Courtyard seating &middot; Spring Release tasting &middot; estate vineyard</div>
+      <div class="vibe">Estate vineyards &middot; Bordeaux-style wines &middot; gravity-flow winery built into a hillside</div>
       <div class="details">
-        Spring Release Tasting &times; 5 guests. Courtyard seating. Booked by Stefanie Willcoxon, Amex ending 4975. Plan ~90 min.
+        Family-owned for 25+ years, Pepper Bridge makes elegant Bordeaux-style wines from 100% estate-grown Walla Walla fruit. The three-level gravity-flow facility is built into a hill against the stunning backdrop of Pepper Bridge Vineyard. Spring Release Tasting &times; 5 guests, courtyard seating. Plan ~90 min. Booked by Stefanie, Amex ending 4975.
       </div>
       <span class="tag reservation">Reservation confirmed</span>
+      <span class="tag food">Courtyard seating</span>
     </div>
   </div>
 
@@ -765,11 +809,11 @@
       </div>
       <div class="meta">
         <span>&#128205; <a href="https://www.google.com/maps/place/3783+Peppers+Bridge+Rd,+Walla+Walla,+WA+99362/" target="_blank">3783 Peppers Bridge Rd, Walla Walla, WA 99362</a></span>
-        <span>&#128222; 509-524-8111 &nbsp;&middot;&nbsp; <a href="mailto:info@altonwines.com">info@altonwines.com</a></span>
+        <span>&#128222; 509-524-8111 &nbsp;&middot;&nbsp; <a href="mailto:info@altonwines.com">info@altonwines.com</a> &nbsp;&middot;&nbsp; <a href="https://www.altonwines.com" target="_blank">altonwines.com</a></span>
       </div>
-      <div class="vibe">Sit inside or out &middot; 21+ only, no pets &middot; relaxed tasting</div>
+      <div class="vibe">Boutique &middot; vineyard + mountain views &middot; old meets new, elegant yet rustic</div>
       <div class="details">
-        $35/person tasting fee ($190.23 total for 5, card ending 6863). Allow ~75 min. No outside food. Booked by Stefanie. <strong>24-hour cancellation policy &mdash; no-shows charged $35/person.</strong>
+        Tucked into &ldquo;the Cove&rdquo; of Pepper Bridge vineyard with views of farm, vineyards, mountains, and big sky. Modern tasting room designed by goCstudio. Taste 5 wines &mdash; as relaxed or wine-geeky as you prefer. $35/person ($190.23 total for 5, card ending 6863). Allow ~75 min. Sit inside or out. 21+ only, no pets, no outside food. Booked by Stefanie. <strong>24-hour cancellation policy &mdash; no-shows charged $35/person.</strong>
       </div>
       <span class="tag reservation">Reservation confirmed</span>
     </div>
